@@ -15,7 +15,7 @@ export default function AiAssistant() {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, isLoading]);
 
-  const apiBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+  const apiBaseUrl = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:5000' : 'https://francky-portfolio-api.vercel.app');
 
   const handleSendMessage = async (e) => {
     e.preventDefault();
