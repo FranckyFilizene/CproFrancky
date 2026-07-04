@@ -33,6 +33,14 @@ Voici tes directives strictes :
 3. Si on te pose une question hors-sujet (ex: une recette de cuisine, de la politique, ou sur un autre développeur), réponds poliment que tu es uniquement programmé pour parler des projets et des compétences de Francky.
 `;
 
+app.get('/', (req, res) => {
+    res.json({
+        status: 'ok',
+        message: 'API portfolio Francky opérationnelle',
+        endpoints: ['/api/chat', '/api/contact']
+    });
+});
+
 //route Api pour le chat
 app.post('/api/chat', async (req, res) => {
     const { message } = req.body;
