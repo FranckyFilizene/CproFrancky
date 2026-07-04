@@ -141,7 +141,7 @@ const Contact = () => {
             onChange={handleChange}
             type="text" 
             placeholder='Votre nom' 
-            className='w-full outline-none' 
+            className='w-full outline-none text-base sm:text-sm' 
             name='name' />
           </div>
 
@@ -154,7 +154,7 @@ const Contact = () => {
             onChange={handleChange} 
             type="text" 
             placeholder='Votre email' 
-            className='w-full outline-none' 
+            className='w-full outline-none text-base sm:text-sm' 
             name='email' />
           </div>
 
@@ -168,7 +168,7 @@ const Contact = () => {
             required
             rows='4'
             placeholder='Message .  .  .' 
-            className='w-full resize-none bg-slate-900 rounded-lg h-32 px-2 outline-none border border-red-950'>
+            className='w-full resize-none bg-slate-900 rounded-lg h-32 px-2 outline-none border border-red-950 text-base sm:text-sm'>
 
             </textarea>
           </div>

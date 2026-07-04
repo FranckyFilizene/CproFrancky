@@ -66,12 +66,12 @@ export default function AiAssistant() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 font-sans text-slate-200">
+    <div className="fixed bottom-4 right-4 z-50 font-sans text-slate-200 sm:bottom-6 sm:right-6">
       {/* --- BULLE FLOTTANTE (BOUTON OUVERTURE) --- */}
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="flex h-14 w-14 items-center justify-center rounded-full bg-red-600 text-white shadow-lg shadow-red-500/30 transition-all duration-300 hover:scale-110 hover:bg-red-500 active:scale-95"
+          className="flex h-12 w-12 items-center justify-center rounded-full bg-red-600 text-white shadow-lg shadow-red-500/30 transition-all duration-300 hover:scale-110 hover:bg-red-500 active:scale-95 sm:h-14 sm:w-14"
         >
           {/* Icône de Chat (SVG) */}
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-6 w-6">
@@ -82,7 +82,7 @@ export default function AiAssistant() {
 
       {/* --- FENÊTRE DE DISCUSSION --- */}
       {isOpen && (
-        <div className="flex h-125 w-full flex-col rounded-2xl border border-zinc-800 bg-zinc-950 shadow-2xl shadow-black/50 sm:w-100">
+        <div className="flex h-[78vh] w-[calc(100vw-1.5rem)] max-w-[24rem] flex-col rounded-2xl border border-zinc-800 bg-zinc-950 shadow-2xl shadow-black/50 sm:h-125 sm:w-100">
           
           {/* Header */}
           <div className="flex items-center justify-between rounded-t-2xl border-b border-zinc-800 bg-zinc-900/50 px-4 py-3">
@@ -112,7 +112,7 @@ export default function AiAssistant() {
                 key={index} 
                 className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
               >
-                <div className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed shadow-md
+                <div className={`max-w-[85%] rounded-2xl px-3 py-2 text-sm leading-relaxed shadow-md sm:max-w-[80%] sm:px-4 sm:py-2.5
                   ${msg.sender === 'user' 
                     ? 'bg-red-700 text-white rounded-tr-none' 
                     : 'bg-zinc-900 text-zinc-300 border border-zinc-800/60 rounded-tl-none'}`}
@@ -143,7 +143,7 @@ export default function AiAssistant() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Posez une question..."
-                className="w-full rounded-xl border border-zinc-800 bg-zinc-900/60 py-2.5 pl-4 pr-12 text-sm text-zinc-200 placeholder-zinc-500 focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500"
+                className="w-full rounded-xl border border-zinc-800 bg-zinc-900/60 py-2.5 pl-4 pr-12 text-base text-zinc-200 placeholder-zinc-500 focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500 sm:text-sm"
               />
               <button
                 type="submit"
