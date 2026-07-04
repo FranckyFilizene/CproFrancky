@@ -28,7 +28,12 @@ const Contact = () => {
     });
   };
 
-  const apiBaseUrl = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:5000' : 'https://francky-portfolio-api.vercel.app');
+  const apiBaseUrls = [
+    import.meta.env.VITE_API_URL,
+    ...(import.meta.env.DEV
+      ? ['http://localhost:5000']
+      : ['https://francky-porfolio-api.vercel.app', 'https://francky-portfolio-api.vercel.app'])
+  ].filter(Boolean);
 
   // Soumission du formulaire au backend
   const handleSubmit = async (e) => {
@@ -38,33 +43,41 @@ const Contact = () => {
     setStatus({ loading: true, success: null, error: null });
 
     try {
-      //appel de l'api du contact sur mon server local dans le server.js
-      const response = await fetch(`${apiBaseUrl}/api/contact`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      });
+      let lastError = null;
 
-      const data = await response.json();
+      for (const apiBaseUrl of apiBaseUrls) {
+        try {
+          const response = await fetch(`${apiBaseUrl}/api/contact`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+          });
 
-      if (response.ok) {
-        // Succès ! On affiche le message et on vide les champs
-        setStatus({
-          loading: false,
-          success: "Votre message a bien été envoyé ! Je vous répondrai rapidement.",
-          error: null
-        });
-        setFormData({ name: '', email: '', message: '' });
-      } else {
-        // Erreur renvoyée par le serveur (ex: champs manquants)
-        setStatus({
-          loading: false,
-          success: null,
-          error: data.error || "Une erreur est survenue lors de l'envoi."
-        });
+          const data = await response.json();
+
+          if (response.ok) {
+            setStatus({
+              loading: false,
+              success: "Votre message a bien été envoyé ! Je vous répondrai rapidement.",
+              error: null
+            });
+            setFormData({ name: '', email: '', message: '' });
+            return;
+          }
+
+          lastError = data.error || "Une erreur est survenue lors de l'envoi.";
+        } catch (error) {
+          lastError = error;
+        }
       }
+
+      setStatus({
+        loading: false,
+        success: null,
+        error: lastError?.message || "Impossible de joindre le serveur. Veuillez réessayer plus tard."
+      });
     } catch (error) {
       // Erreur réseau (serveur éteint, mauvaise URL, etc.)
       console.error("Erreur connexion formulaire:", error);

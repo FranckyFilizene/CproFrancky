@@ -15,7 +15,12 @@ export default function AiAssistant() {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, isLoading]);
 
-  const apiBaseUrl = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:5000' : 'https://francky-portfolio-api.vercel.app');
+  const apiBaseUrls = [
+    import.meta.env.VITE_API_URL,
+    ...(import.meta.env.DEV
+      ? ['http://localhost:5000']
+      : ['https://francky-porfolio-api.vercel.app', 'https://francky-portfolio-api.vercel.app'])
+  ].filter(Boolean);
 
   const handleSendMessage = async (e) => {
     e.preventDefault();
@@ -28,21 +33,30 @@ export default function AiAssistant() {
     setIsLoading(true);
 
     try {
-      // 2. Appeler ton backend local
-      const response = await fetch(`${apiBaseUrl}/api/chat`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: userMessage }),
-      });
+      let lastError = null;
 
-      const data = await response.json();
+      for (const apiBaseUrl of apiBaseUrls) {
+        try {
+          const response = await fetch(`${apiBaseUrl}/api/chat`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: userMessage }),
+          });
 
-      if (data.reply) {
-        // 3. Ajouter la réponse de l'IA
-        setMessages((prev) => [...prev, { sender: 'ai', text: data.reply }]);
-      } else {
-        setMessages((prev) => [...prev, { sender: 'ai', text: data.error || 'Oups, je rencontre un petit problème technique.' }]);
+          const data = await response.json();
+
+          if (data.reply) {
+            setMessages((prev) => [...prev, { sender: 'ai', text: data.reply }]);
+            return;
+          }
+
+          lastError = new Error(data.error || 'Oups, je rencontre un petit problème technique.');
+        } catch (error) {
+          lastError = error;
+        }
       }
+
+      setMessages((prev) => [...prev, { sender: 'ai', text: lastError?.message || 'Impossible de joindre mon serveur pour le moment.' }]);
     } catch (error) {
       console.error(error);
       setMessages((prev) => [...prev, { sender: 'ai', text: error.message || 'Impossible de joindre mon serveur pour le moment.' }]);
