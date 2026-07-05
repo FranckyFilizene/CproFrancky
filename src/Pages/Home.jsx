@@ -2,6 +2,7 @@ import React from 'react'
 import { BsGithub } from 'react-icons/bs'
 import { FaFacebook, FaWhatsapp } from 'react-icons/fa'
 import profil from '../../src/assets/porfil.png'
+import { BiLocationPlus } from 'react-icons/bi'
 
 const Home = () => {
   return (
@@ -80,7 +81,10 @@ const Home = () => {
 
         {/* Image Desktop seulement */}
         <div className="hidden md:flex w-[40%] justify-center">
-          <div className="bg-gradient-to-tr from-red-800 to-slate-900 p-8 rounded-3xl shadow-2xl">
+          <div className="bg-gradient-to-tr from-red-800 to-slate-900 p-8 rounded-3xl shadow-2xl relative">
+            <div className='absolute flex justify-center items-center gap-1 text-gray-500 font-extrabold top-2 right-4'>
+              <BiLocationPlus size={20}/> Toliara
+            </div>
             <img
               src={profil}
               alt="Profil"
