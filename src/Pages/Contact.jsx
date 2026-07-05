@@ -101,8 +101,14 @@ const Contact = () => {
         </div>
         <div className='flex justify-center items-center'>
           <button className='bg-red-500 w-40 px-4 py-2 flex justify-center items-center gap-2 rounded-lg hover:bg-red-700 duration-300 cursor-pointer'>
-            <a href="" className='text-decoration-none text-white font-bold'>Mon CV</a>
-            <BiDownload size={25} />
+            <a
+              href="/CV/moncv.pdf"
+              download="CV_Francky.pdf"
+              className="bg-transparent w-40 px-4 py-2 flex justify-center items-center gap-2 rounded-lg duration-300 cursor-pointer text-white font-bold no-underline"
+            >
+              Mon CV
+              <BiDownload size={25} />
+            </a>
           </button>
         </div>
         <div className="flex gap-6 text-2xl">
@@ -129,60 +135,60 @@ const Contact = () => {
         </div>
       </div>
 
-      <div className='flex flex-col justify-center items-center space-y-2 md:w-[60%] w-full h-full bg-gray-800 rounded-lg p-5'>
+      <div className='flex flex-col justify-center items-center space-y-2 md:w-[50%] w-full h-full bg-gray-800 rounded-lg p-5'>
         <h2 className='text-3xl font-bold'>Contact</h2>
-        <form action="" className='w-full px-8' onSubmit={handleSubmit}>
+        <form action="" className='w-full px-1' onSubmit={handleSubmit}>
           <label htmlFor="nom" className='text-slate-300 tracking-tighter'>Nom :</label>
           <div className='flex justify-center items-center text-slate-400 bg-slate-900 h-10 w-full px-2 gap-2 rounded-lg border border-red-950'>
             <CgProfile size={20} className='text-red-900' />
-            <input 
-            required
-            value={formData.name}
-            onChange={handleChange}
-            type="text" 
-            placeholder='Votre nom' 
-            className='w-full outline-none text-base sm:text-sm' 
-            name='name' />
+            <input
+              required
+              value={formData.name}
+              onChange={handleChange}
+              type="text"
+              placeholder='Votre nom'
+              className='w-full outline-none text-base sm:text-sm'
+              name='name' />
           </div>
 
           <label htmlFor="email" className='text-slate-300 tracking-tighter'>Email :</label>
           <div className='flex justify-center items-center text-slate-400 bg-slate-900 h-10 w-full px-2 gap-2 rounded-lg border border-red-950'>
             <MdEmail size={20} className='text-red-900' />
             <input
-            required
-            value={formData.email}
-            onChange={handleChange} 
-            type="text" 
-            placeholder='Votre email' 
-            className='w-full outline-none text-base sm:text-sm' 
-            name='email' />
+              required
+              value={formData.email}
+              onChange={handleChange}
+              type="text"
+              placeholder='Votre email'
+              className='w-full outline-none text-base sm:text-sm'
+              name='email' />
           </div>
 
           <div className='flex w-full flex-col'>
             <label htmlFor="nom" className='text-slate-300 tracking-tighter'>Message :</label>
-            <textarea 
-            name="message" 
-            id="message" 
-            value={formData.message}
-            onChange={handleChange}
-            required
-            rows='4'
-            placeholder='Message .  .  .' 
-            className='w-full resize-none bg-slate-900 rounded-lg h-32 px-2 outline-none border border-red-950 text-base sm:text-sm'>
+            <textarea
+              name="message"
+              id="message"
+              value={formData.message}
+              onChange={handleChange}
+              required
+              rows='4'
+              placeholder='Message .  .  .'
+              className='w-full resize-none bg-slate-900 rounded-lg h-32 px-2 outline-none border border-red-950 text-base sm:text-sm'>
 
             </textarea>
           </div>
           <div>
-            <button 
-            disabled = {status.loading}
+            <button
+              disabled={status.loading}
 
-            type="submit" 
-            className='flex justify-center items-center gap-1 rounded hover:bg-slate-700 cursor-pointer duration-300 bg-slate-950 font-bold px-4 py-2 mt-3 text-white'>
-            {
-              status.loading ? 
-              (<span className="flex justify-center items-center gap-1">Envoie en cours . . . </span>) :
-              (<span className='flex justify-center items-center gap-1'>Envoyer<BiSend /></span>)
-            }
+              type="submit"
+              className='flex justify-center items-center gap-1 rounded hover:bg-slate-700 cursor-pointer duration-300 bg-slate-950 font-bold px-4 py-2 mt-3 text-white'>
+              {
+                status.loading ?
+                  (<span className="flex justify-center items-center gap-1">Envoie en cours . . . </span>) :
+                  (<span className='flex justify-center items-center gap-1'>Envoyer<BiSend /></span>)
+              }
             </button>
           </div>
         </form>
