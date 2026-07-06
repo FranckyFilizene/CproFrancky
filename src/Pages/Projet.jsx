@@ -1,6 +1,6 @@
 import React from 'react'
 import { BsBootstrap, BsClaude, BsDatabase, BsOpenai } from 'react-icons/bs'
-import { FaJs, FaLaravel, FaPhp, FaVuejs } from 'react-icons/fa'
+import { FaHtml5, FaJs, FaLaravel, FaPhp, FaVuejs } from 'react-icons/fa'
 import { GrReactjs } from 'react-icons/gr'
 import { SiGooglegemini, SiTailwindcss } from 'react-icons/si'
 import ticketing from '../../src/assets/ticketing.png'
@@ -10,6 +10,7 @@ import { BsGithub } from 'react-icons/bs'
 import { FcNext } from 'react-icons/fc'
 import { GiGemini } from 'react-icons/gi'
 import { DiMysql } from 'react-icons/di'
+import { FaCss } from 'react-icons/fa6'
 
 
 const Projet = () => {
@@ -54,7 +55,7 @@ const Projet = () => {
             <img src={visiteur} alt=".." className='w-full max-w-[320px] h-auto rounded shadow-lg' />
             <div className='bg-slate-950 w-full p-2 text-white rounded-b-lg shadow-lg'>
               <div className='flex justify-between items-center'>
-               <p className='text-left text-[10px] text-slate-500 font-bold'>webApp.2026</p>
+                <p className='text-left text-[10px] text-slate-500 font-bold'>webApp.2026</p>
                 <div className='flex justify-center items-center gap-1.5'>
                   <GrReactjs className='text-sky-500' />
                   <SiTailwindcss className='text-sky-400' />
@@ -85,7 +86,7 @@ const Projet = () => {
             <img src={sout} alt=".." className='w-full max-w-[350px] h-auto rounded shadow-lg' />
             <div className='bg-slate-950 w-full p-2 text-white rounded-b-lg shadow-lg'>
               <div className='flex justify-between items-center'>
-               <p className='text-left text-[10px] text-slate-500 font-bold'>webApp.2026</p>
+                <p className='text-left text-[10px] text-slate-500 font-bold'>webApp.2026</p>
                 <div className='flex justify-center items-center gap-1.5'>
                   <GrReactjs className='text-sky-500' />
                   <SiTailwindcss className='text-sky-400' />
@@ -123,8 +124,6 @@ const Projet = () => {
             <span className='flex items-center gap-2 w-full'>
               <GrReactjs className='text-sky-500' />
               <FaLaravel className='text-red-600' />
-              <SiTailwindcss className='text-sky-500' />
-              <BsBootstrap className='text-violet-950' />
               <FaVuejs className='text-green-800' />
             </span>
             <div className='flex justify-center items-center gap-2 w-full'>
@@ -153,6 +152,22 @@ const Projet = () => {
             <h2 className='w-full text-[13px] font-semibold tracking-[5px]'>Base de données</h2>
             <span className='flex items-center gap-2 w-full'>
               <DiMysql className='text-sky-700' />
+            </span>
+            <div className='flex justify-center items-center gap-2 w-full'>
+              <div className='w-full h-1 bg-gray-700'>
+                <div className='w-[80%] h-1 bg-red-400 rounded-r-xl'></div>
+              </div>
+              <p className='text-[10px] font-bold text-gray-400'>80%</p>
+            </div>
+          </div>
+
+          <div className='flex flex-col justify-center items-center w-full px-2'>
+            <h2 className='w-full text-[13px] font-semibold tracking-[5px]'>Technologies Web</h2>
+            <span className='flex items-center gap-2 w-full'>
+              <FaHtml5 className='text-red-600' />
+              <FaCss className='text-violet-700' />
+              <SiTailwindcss className='text-sky-500' />
+              <BsBootstrap className='text-violet-950' />
             </span>
             <div className='flex justify-center items-center gap-2 w-full'>
               <div className='w-full h-1 bg-gray-700'>

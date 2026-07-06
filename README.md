@@ -1,16 +1,46 @@
-# React + Vite
+# TITRE 
+-Porfolio FullStack developpeur.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# OVERVIEW
+-a moderm fullstack developer porfolio built with React, Express,Gemini AI and Nodemailer.
 
-Currently, two official plugins are available:
+# FEATURES
+-Project showcase section
+-Responsive UI
+-AI chatbot (Gemini AI)
+-Contact build with nodemailer
+-Express backend API
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+# TECH STACK
+-Frontend: React, TailwindCSS
+-Backend: Node.js , Express
+-AI: Google Gemini API
+-Email: Nodemailer
 
-## React Compiler
+# INSTALLATION
+-git clone https://github.com/FranckyFilizene/CproFrancky
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+# AFTER CLONING MY PROJET TRY THIS TO FRONTEND AND BACKEND
+-FrondEnd : cd cprofrancky && npm install && npm run dev
+-BackEnd : cd backend && npm install && npm run dev
 
-## Expanding the ESLint configuration
+# ENVIRONMENT VARIABLE
+-GEMINI_API_KEY
+-EMAIL_USER
+-EMAIL_PASS
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# STRUCTURE
+|-Backend
+|-dist
+|-node_module
+|-public
+|-src
+
+# NAME
+Variable name : camelCase
+File name : Pascalcase
+jsx name : minicule
+Env name : MAJUSCULE with snakecas
+
+# Author
+Francky Michel

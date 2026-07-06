@@ -139,8 +139,8 @@ const Contact = () => {
         <h2 className='text-3xl font-bold'>Contact</h2>
         <form action="" className='w-full px-1' onSubmit={handleSubmit}>
           <label htmlFor="nom" className='text-slate-300 tracking-tighter'>Nom :</label>
-          <div className='flex justify-center items-center text-slate-400 bg-slate-900 h-10 w-full px-2 gap-2 rounded-lg border border-red-950'>
-            <CgProfile size={20} className='text-red-900' />
+          <div className='flex justify-center items-center text-slate-400 bg-slate-900 h-10 w-full px-2 gap-2 rounded-lg border border-slate-600'>
+            <CgProfile size={20} className='text-slate-500' />
             <input
               required
               value={formData.name}
@@ -152,8 +152,8 @@ const Contact = () => {
           </div>
 
           <label htmlFor="email" className='text-slate-300 tracking-tighter'>Email :</label>
-          <div className='flex justify-center items-center text-slate-400 bg-slate-900 h-10 w-full px-2 gap-2 rounded-lg border border-red-950'>
-            <MdEmail size={20} className='text-red-900' />
+          <div className='flex justify-center items-center text-slate-400 bg-slate-900 h-10 w-full px-2 gap-2 rounded-lg border border-slate-600'>
+            <MdEmail size={20} className='text-slate-500' />
             <input
               required
               value={formData.email}
@@ -174,7 +174,7 @@ const Contact = () => {
               required
               rows='4'
               placeholder='Message .  .  .'
-              className='w-full resize-none bg-slate-900 rounded-lg h-32 px-2 outline-none border border-red-950 text-base sm:text-sm'>
+              className='w-full resize-none bg-slate-900 rounded-lg h-32 px-2 outline-none border border-slate-600 text-base sm:text-sm'>
 
             </textarea>
           </div>
