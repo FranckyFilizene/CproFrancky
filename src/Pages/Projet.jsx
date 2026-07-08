@@ -11,7 +11,7 @@ import { FcNext } from 'react-icons/fc'
 import { GiGemini } from 'react-icons/gi'
 import { DiMysql } from 'react-icons/di'
 import { FaCss } from 'react-icons/fa6'
-
+import skills from "../data/skillsData.js";
 
 const Projet = () => {
   return (
@@ -117,81 +117,47 @@ const Projet = () => {
 
       <div className='w-full flex justify-center items-center flex-col space-y-2'>
         <h1 className='text-2xl font-bold tracking-tighter'>Competence clés</h1>
-        <div className='flex justify-center items-center flex-col gap-2 md:w-[50%] w-full space-y-3 bg-slate-950 py-5 rounded-xl shadow-lg'>
-
-          <div className='flex flex-col items-center justify-center w-full px-2'>
-            <h2 className='w-full text-[13px] font-semibold tracking-[5px]'>Mes Framework</h2>
-            <span className='flex items-center gap-2 w-full'>
-              <GrReactjs className='text-sky-500' />
-              <FaLaravel className='text-red-600' />
-              <FaVuejs className='text-green-800' />
-            </span>
-            <div className='flex justify-center items-center gap-2 w-full'>
-              <div className='w-full h-1 bg-gray-700'>
-                <div className='w-[57%] h-1 bg-red-400 rounded-r-xl'></div>
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 w-full">
+          {skills.map((skill) => (
+            <div
+              key={skill.id}
+              className="relative flex flex-col justify-between min-h-[220px] bg-slate-950 rounded-xl border border-slate-800 p-5 hover:border-red-500 transition-all duration-300"
+            >
+              {/* Numéro */}
+              <div className="absolute top-3 right-3 flex items-center justify-center w-10 h-10 rounded-full bg-slate-800 text-white font-bold">
+                {skill.id}
               </div>
-              <p className='text-[10px] font-bold text-gray-400'>57%</p>
-            </div>
-          </div>
 
-          <div className='flex flex-col justify-center items-center w-full px-2'>
-            <h2 className='w-full text-[13px] font-semibold tracking-[5px]'>Mes langages</h2>
-            <span className='flex items-center gap-2 w-full'>
-              <FaJs className='text-yellow-300' />
-              <FaPhp className='text-blue-800' />
-            </span>
-            <div className='flex justify-center items-center gap-2 w-full'>
-              <div className='w-full h-1 bg-gray-700'>
-                <div className='w-[75%] h-1 bg-red-400 rounded-r-xl'></div>
+              {/* Titre */}
+              <h2 className="text-sm md:text-base font-semibold tracking-[4px] uppercase">
+                {skill.title}
+              </h2>
+          
+              {/* Icônes */}
+              <div className="flex flex-wrap items-center gap-4 text-3xl my-8">
+                {skill.icons.map(({ Icon, Style }, index) => (
+                  <Icon
+                    key={index}
+                    className={Style}
+                  />
+                ))}
               </div>
-              <p className='text-[10px] font-bold text-gray-400'>75%</p>
-            </div>
-          </div>
 
-          <div className='flex flex-col justify-center items-center w-full px-2'>
-            <h2 className='w-full text-[13px] font-semibold tracking-[5px]'>Base de données</h2>
-            <span className='flex items-center gap-2 w-full'>
-              <DiMysql className='text-sky-700' />
-            </span>
-            <div className='flex justify-center items-center gap-2 w-full'>
-              <div className='w-full h-1 bg-gray-700'>
-                <div className='w-[80%] h-1 bg-red-400 rounded-r-xl'></div>
+              {/* Barre de progression */}
+              <div className="flex items-center gap-3">
+                <div className="flex-1 h-2 bg-slate-800 rounded-full overflow-hidden">
+                  <div
+                    className="h-full rounded-full bg-gradient-to-r from-red-500 to-orange-600"
+                    style={{ width: `${skill.progress}%` }}
+                  ></div>
+                </div>
+
+                <span className="text-xs font-semibold text-slate-400">
+                  {skill.progress}%
+                </span>
               </div>
-              <p className='text-[10px] font-bold text-gray-400'>80%</p>
             </div>
-          </div>
-
-          <div className='flex flex-col justify-center items-center w-full px-2'>
-            <h2 className='w-full text-[13px] font-semibold tracking-[5px]'>Technologies Web</h2>
-            <span className='flex items-center gap-2 w-full'>
-              <FaHtml5 className='text-red-600' />
-              <FaCss className='text-violet-700' />
-              <SiTailwindcss className='text-sky-500' />
-              <BsBootstrap className='text-violet-950' />
-            </span>
-            <div className='flex justify-center items-center gap-2 w-full'>
-              <div className='w-full h-1 bg-gray-700'>
-                <div className='w-[80%] h-1 bg-red-400 rounded-r-xl'></div>
-              </div>
-              <p className='text-[10px] font-bold text-gray-400'>80%</p>
-            </div>
-          </div>
-
-          <div className='flex flex-col justify-center items-center w-full px-2'>
-            <h2 className='w-full text-[13px] font-semibold tracking-[5px]'>Outils IA</h2>
-            <span className='flex items-center gap-2 w-full'>
-              <BsClaude className='text-orange-800' />
-              <BsOpenai />
-              <SiGooglegemini />
-            </span>
-            <div className='flex justify-center items-center gap-2 w-full'>
-              <div className='w-full h-1 bg-gray-700'>
-                <div className='w-[70%] h-1 bg-red-400 rounded-r-xl'></div>
-              </div>
-              <p className='text-[10px] font-bold text-gray-400'>70%</p>
-            </div>
-          </div>
-
+          ))}
         </div>
       </div>
     </div>
