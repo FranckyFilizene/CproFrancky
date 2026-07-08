@@ -145,9 +145,9 @@ const Projet = () => {
 
               {/* Barre de progression */}
               <div className="flex items-center gap-3">
-                <div className="flex-1 h-2 bg-slate-800 rounded-full overflow-hidden">
+                <div className="flex-1 h-0.5 bg-slate-800 rounded-full overflow-hidden">
                   <div
-                    className="h-full rounded-full bg-gradient-to-r from-red-500 to-orange-600"
+                    className="h-full rounded-full bg-red-600"
                     style={{ width: `${skill.progress}%` }}
                   ></div>
                 </div>

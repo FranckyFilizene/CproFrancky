@@ -23,7 +23,7 @@ function Navbar() {
         </h1>
         <button
           onClick={toogleMenu}
-          className='md:hidden text-red-600 focus:outline-none z-50'
+          className='md:hidden text-slate-100 focus:outline-none z-50'
           aria-label='toggle menu'>
           {isOpen ? <FaTimes size={25} /> : <FaBars size={25} />}
         </button>

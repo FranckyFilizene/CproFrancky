@@ -6,7 +6,8 @@ import { FaCss } from 'react-icons/fa6'
 import { BsBootstrap, BsClaude, BsDatabase, BsOpenai } from 'react-icons/bs'
 import { FaHtml5, FaJs, FaLaravel, FaPhp, FaVuejs } from 'react-icons/fa'
 import { GrReactjs } from 'react-icons/gr'
-import { SiGooglegemini, SiTailwindcss } from 'react-icons/si'
+import { SiGooglegemini, SiPostman, SiTailwindcss } from 'react-icons/si'
+
 
 const skills= [
     {
@@ -41,7 +42,7 @@ const skills= [
         title: "Technologies Web",
         progress: 80,
         icons: [
-            {Icon : FaHtml5 ,Style :'text-red-600'},
+            {Icon : FaHtml5 ,Style :'text-red-500'},
             {Icon : FaCss, Style: 'text-violet-700'},
             {Icon : SiTailwindcss, Style :'text-sky-500'},
             {Icon : BsBootstrap, Style:'text-violet-950'}
@@ -57,6 +58,14 @@ const skills= [
             {Icon : SiGooglegemini, Style : 'text-white'}
         ],
     },
+    {
+        id : "VI",
+        title : "Outils Test API",
+        progress : 85,
+        icons: [
+            {Icon : SiPostman, Style : "text-orange-600"}
+        ]
+    }
 ];
 
 export default skills;
