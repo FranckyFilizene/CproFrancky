@@ -2,10 +2,11 @@ import React from 'react'
 import { BsBootstrap, BsClaude, BsDatabase, BsOpenai } from 'react-icons/bs'
 import { FaHtml5, FaJs, FaLaravel, FaPhp, FaVuejs } from 'react-icons/fa'
 import { GrReactjs } from 'react-icons/gr'
-import { SiGooglegemini, SiTailwindcss } from 'react-icons/si'
+import { SiGooglegemini, SiPostman, SiTailwindcss } from 'react-icons/si'
 import ticketing from '../../src/assets/ticketing.png'
 import visiteur from '../../src/assets/visiter.png'
 import sout from '../../src/assets/soutenance.png'
+import boxia from '../../src/assets/box-ia.png'
 import { BsGithub } from 'react-icons/bs'
 import { FcNext } from 'react-icons/fc'
 import { GiGemini } from 'react-icons/gi'
@@ -20,6 +21,37 @@ const Projet = () => {
       <div className='flex justify-center items-center flex-col gap-5 w-full h-[50%] p-5'>
         <h2 className='text-3xl text-white font-bold tracking-tighter'>Mes Projects</h2>
         <div className='md:flex justify-center items-start flex-wrap gap-5 w-full h-full space-y-5'>
+
+           <div className='bg-slate-100 border-gray-600  shadow-lg border rounded-lg w-full md:w-[30%] h-full flex flex-col justify-start items-center pt-2 gap-2'>
+            <img src={boxia} alt=".." className='w-full max-w-[320px] h-auto rounded shadow-lg' />
+            <div className='bg-slate-950 w-full p-2 text-white rounded-b-lg shadow-lg'>
+              <div className='flex justify-between items-center'>
+                <p className='text-left text-[10px] text-slate-500 font-bold'>webApp.2026</p>
+                <div className='flex justify-center items-center gap-1.5'>
+                  <GrReactjs className='text-sky-500' />
+                  <SiTailwindcss className='text-sky-400' />
+                  <SiPostman className='text-orange-500'/>
+                </div>
+              </div>
+              <p className='text-xl text-slate-100 font-bold'>BoxIA</p>
+              <p className='text-[13px] text-gray-500'>Intelligence artificiel rapide,<br />
+                précise et accessible a tous.<br />
+                Toujour pret a repondre a tout les question</p>
+              <div className='flex justify-between items-center gap-2 w-full p-2'>
+                <button className='w-32 bg-slate-900 rounded text-white hover:bg-slate-800 transition-all'>
+                  <a href="https://github.com/FranckyFilizene/boxia" className='flex justify-center items-center gap-2 p-2'><BsGithub />
+                    Github
+                  </a>
+                </button>
+                <button className='w-32 bg-blue-800 rounded text-white hover:bg-blue-600 transition-all'>
+                  <a href="https://box-ia.vercel.app/" className='flex justify-center items-center gap-2 p-2'>
+                    Voir
+                    <FcNext className='text-white' />
+                  </a>
+                </button>
+              </div>
+            </div>
+          </div>
 
           <div className='bg-slate-100 border border-gray-600  shadow-lg rounded-lg w-full md:w-[30%] h-full flex flex-col justify-start items-center pt-2 gap-2'>
             <img src={ticketing} alt=".." className='w-full max-w-75 h-auto rounded shadow-lg' />
