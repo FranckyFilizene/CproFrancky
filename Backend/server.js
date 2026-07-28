@@ -73,7 +73,7 @@ app.post('/api/chat', async (req, res) => {
             normalizedMessage.includes('bonsoir') ||
             normalizedMessage.includes('hello')
         ) {
-            return "Bonjour et bienvenue ! Je suis l'assistant virtuel de Francky, Développeur Full Stack Junior. Je suis à votre disposition pour répondre à vos questions concernant son profil, ses compétences, ses projets ou son parcours professionnel.";
+            return "Bonjour et bienvenue ! Je suis l'assistant virtuel de ce portfolio. Je suis à votre disposition pour vous présenter son profil, ses compétences en développement web et logiciel, ainsi que l'ensemble de ses réalisations.";
         }
 
         // Projets
@@ -81,9 +81,22 @@ app.post('/api/chat', async (req, res) => {
             normalizedMessage.includes('projet') ||
             normalizedMessage.includes('portfolio') ||
             normalizedMessage.includes('réalisation') ||
-            normalizedMessage.includes('travail')
+            normalizedMessage.includes('realisation') ||
+            normalizedMessage.includes('travail') ||
+            normalizedMessage.includes('projet')
         ) {
-            return "Francky a réalisé plusieurs projets web, notamment GearUp (e-commerce d'articles de sport), SPAVisiteur (gestion des visiteurs) ainsi que ce portfolio interactif. Ces projets mettent en avant ses compétences en React, Tailwind CSS, PHP, Laravel et les bases de données relationnelles.";
+            return "Voici un aperçu de ses principales réalisations :\n\n" +
+                "🛠️ Applications de Gestion & Systèmes Métier :\n" +
+                "• Gestion de soutenance : Solution de suivi académique (étudiants, sujets et jurys).\n" +
+                "• SPAvisiteur : Application web CRUD dédiée à la gestion complète des visiteurs.\n" +
+                "• Ticketing : Plateforme de gestion des tickets d'assistance (authentification, suivi & tableau de bord).\n" +
+                "• Gestion d'association étudiante : Application desktop/web pour le suivi des membres, événements et cotisations.\n\n" +
+                "🌐 Plateformes Web & Intelligence Artificielle :\n" +
+                "• BOXIA : Plateforme web moderne intégrant un chatbot IA (React, Express.js, Tailwind CSS, API IA).\n" +
+                "• GEARUP : Site e-commerce responsive dédié aux équipements de voyage et randonnée.\n\n" +
+                "🎨 Vitrines, Clubs & sur-mesure :\n" +
+                "• Portfolios professionnels : Conception de sites vitrines responsives et sur-mesure pour développeurs.\n" +
+                "• Site web pour un club : Plateforme de gestion des activités et actualités (React, Node.js/Express, MySQL).";
         }
 
         // Compétences
@@ -93,41 +106,52 @@ app.post('/api/chat', async (req, res) => {
             normalizedMessage.includes('technologie') ||
             normalizedMessage.includes('tech') ||
             normalizedMessage.includes('framework') ||
-            normalizedMessage.includes('langage')
+            normalizedMessage.includes('langage') ||
+            normalizedMessage.includes('outil')
         ) {
-            return "Francky possède des compétences en développement Frontend avec React, Vue.js et Tailwind CSS, ainsi qu'en développement Backend avec PHP, Laravel, Node.js, MySQL et PostgreSQL. Il maîtrise également Git, GitHub et les bonnes pratiques du développement web moderne.";
+            return "Ses compétences techniques couvrent l'ensemble du cycle de développement :\n\n" +
+                "• Développement Frontend : React, Vue.js, JavaScript (ES6+), Tailwind CSS, SCSS, HTML5/CSS3\n" +
+                "• Développement Backend : PHP, Node.js / Express.js, C# (WinForms), Assemblage x86\n" +
+                "• Gestion de données : MySQL, PostgreSQL (Conception BDD, requêtes complexes)\n" +
+                "• Outils & Méthodes : Git, GitHub, REST APIs, Intégration d'APIs IA, WampServer/XAMPP, DOSBox";
         }
 
         // Formation
         if (
             normalizedMessage.includes('formation') ||
             normalizedMessage.includes('étude') ||
+            normalizedMessage.includes('etude') ||
             normalizedMessage.includes('université') ||
-            normalizedMessage.includes('ecole')
+            normalizedMessage.includes('ecole') ||
+            normalizedMessage.includes('eni') ||
+            normalizedMessage.includes('parcours')
         ) {
-            return "Francky est actuellement en formation en informatique et développe continuellement ses compétences à travers des projets concrets et une veille technologique régulière.";
+            return "Il poursuit actuellement ses études en 2ème année à l'École Nationale d'Informatique (ENI), où il approfondit le développement logiciel, les architectures web et la gestion de bases de données.";
         }
 
-        // Contact
+        // Contact / Embauche / Stage
         if (
             normalizedMessage.includes('contact') ||
             normalizedMessage.includes('email') ||
             normalizedMessage.includes('embauche') ||
-            normalizedMessage.includes('recrutement')
+            normalizedMessage.includes('stage') ||
+            normalizedMessage.includes('recrutement') ||
+            normalizedMessage.includes('joindre')
         ) {
-            return "Si vous souhaitez échanger avec Francky concernant une opportunité professionnelle, un stage ou une collaboration, vous pouvez utiliser le formulaire de contact disponible sur ce portfolio. Il vous répondra dans les meilleurs délais.";
+            return "Actuellement à la recherche d'un stage académique de 2ème année ou d'une opportunité de collaboration professionnelle, il est joignable directement via le formulaire de contact de ce portfolio.";
         }
 
         // Remerciement
         if (
             normalizedMessage.includes('merci') ||
-            normalizedMessage.includes('thanks')
+            normalizedMessage.includes('thanks') ||
+            normalizedMessage.includes('super')
         ) {
-            return "Avec plaisir ! N'hésitez pas à me poser d'autres questions concernant le parcours, les compétences ou les projets de Francky.";
+            return "C'est un plaisir de vous renseigner ! N'hésitez pas si vous souhaitez obtenir d'autres détails sur son parcours ou ses projets.";
         }
 
         // Réponse par défaut
-        return "Je suis l'assistant virtuel de Francky. Je peux vous renseigner sur son parcours, ses compétences techniques, ses projets, son expérience et ses coordonnées. N'hésitez pas à me poser votre question.";
+        return "Je suis l'assistant virtuel de ce portfolio. Je peux vous renseigner sur ses projets, ses compétences techniques, sa formation à l'ENI ou sa recherche de stage. Comment puis-je vous aider ?";
     };
 
     if (!hasValidGeminiKey) {
