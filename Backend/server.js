@@ -85,18 +85,21 @@ app.post('/api/chat', async (req, res) => {
             normalizedMessage.includes('travail') ||
             normalizedMessage.includes('projet')
         ) {
-            return "Voici un aperçu de ses principales réalisations :\n\n" +
+            return "Voici un aperçu de ses principales réalisations, illustrant sa capacité à concevoir et développer des applications répondant à des besoins concrets, aussi bien dans le domaine académique que professionnel.\n\n" +
+
                 "🛠️ Applications de Gestion & Systèmes Métier :\n" +
-                "• Gestion de soutenance : Solution de suivi académique (étudiants, sujets et jurys).\n" +
-                "• SPAvisiteur : Application web CRUD dédiée à la gestion complète des visiteurs.\n" +
-                "• Ticketing : Plateforme de gestion des tickets d'assistance (authentification, suivi & tableau de bord).\n" +
-                "• Gestion d'association étudiante : Application desktop/web pour le suivi des membres, événements et cotisations.\n\n" +
-                "🌐 Plateformes Web & Intelligence Artificielle :\n" +
-                "• BOXIA : Plateforme web moderne intégrant un chatbot IA (React, Express.js, Tailwind CSS, API IA).\n" +
-                "• GEARUP : Site e-commerce responsive dédié aux équipements de voyage et randonnée.\n\n" +
-                "🎨 Vitrines, Clubs & sur-mesure :\n" +
-                "• Portfolios professionnels : Conception de sites vitrines responsives et sur-mesure pour développeurs.\n" +
-                "• Site web pour un club : Plateforme de gestion des activités et actualités (React, Node.js/Express, MySQL).";
+                "• Gestion de soutenance : Application permettant d'organiser et de suivre les soutenances, avec la gestion des étudiants, des sujets, des encadreurs et des jurys.\n" +
+                "• SPAvisiteur : Application web CRUD dédiée à la gestion complète des visiteurs, incluant l'enregistrement, le suivi et la consultation des données.\n" +
+                "• Ticketing : Plateforme de gestion des tickets d'assistance intégrant l'authentification des utilisateurs, le suivi des demandes, les statuts et un tableau de bord interactif.\n" +
+                "• Gestion d'association étudiante : Solution de gestion des membres, des événements, des cotisations et des statistiques pour faciliter l'administration d'une association.\n\n" +
+
+                "🌐 Plateformes Web & Solutions Innovantes :\n" +
+                "• BOXIA : Plateforme web moderne intégrant un assistant conversationnel basé sur l'intelligence artificielle, développée avec React, Express.js, Tailwind CSS et une API IA.\n" +
+                "• GEARUP : Site e-commerce responsive conçu pour la vente d'équipements de voyage et de randonnée, mettant l'accent sur l'expérience utilisateur et un design moderne.\n\n" +
+
+                "🎨 Sites Vitrines & Développement sur mesure :\n" +
+                "• Portfolios professionnels : Conception de sites vitrines personnalisés, responsives et optimisés pour mettre en valeur le profil et les réalisations de développeurs.\n" +
+                "• Site web pour un club : Développement d'une plateforme permettant de gérer les activités, les actualités et les membres du club avec React, Express.js et MySQL."
         }
 
         // Compétences
@@ -109,11 +112,10 @@ app.post('/api/chat', async (req, res) => {
             normalizedMessage.includes('langage') ||
             normalizedMessage.includes('outil')
         ) {
-            return "Ses compétences techniques couvrent l'ensemble du cycle de développement :\n\n" +
-                "• Développement Frontend : React, Vue.js, JavaScript (ES6+), Tailwind CSS, SCSS, HTML5/CSS3\n" +
-                "• Développement Backend : PHP, Node.js / Express.js, C# (WinForms), Assemblage x86\n" +
-                "• Gestion de données : MySQL, PostgreSQL (Conception BDD, requêtes complexes)\n" +
-                "• Outils & Méthodes : Git, GitHub, REST APIs, Intégration d'APIs IA, WampServer/XAMPP, DOSBox";
+            return "Ses compétences techniques couvrent l'ensemble du cycle de développement d'applications web, lui permettant de concevoir des solutions complètes, performantes et évolutives.\n\n" +
+                "• Développement Frontend : Développement d'interfaces utilisateur modernes, responsives et interactives avec React, Vue.js, JavaScript (ES6+), Tailwind CSS, SCSS, HTML5 et CSS3, en privilégiant l'expérience utilisateur.\n" +
+                "• Développement Backend : Création d'API REST sécurisées, gestion de la logique applicative et intégration de services avec PHP, Node.js et Express.js.\n" +
+                "• Gestion de bases de données : Conception, modélisation et optimisation de bases de données relationnelles avec MySQL et PostgreSQL afin de garantir la fiabilité, la cohérence et les performances des données."
         }
 
         // Formation
@@ -121,12 +123,13 @@ app.post('/api/chat', async (req, res) => {
             normalizedMessage.includes('formation') ||
             normalizedMessage.includes('étude') ||
             normalizedMessage.includes('etude') ||
+            normalizedMessage.includes('etudie') ||
             normalizedMessage.includes('université') ||
             normalizedMessage.includes('ecole') ||
             normalizedMessage.includes('eni') ||
             normalizedMessage.includes('parcours')
         ) {
-            return "Il poursuit actuellement ses études en 2ème année à l'École Nationale d'Informatique (ENI), où il approfondit le développement logiciel, les architectures web et la gestion de bases de données.";
+            return "Il poursuit actuellement ses études en 2ᵉ année à l'École Nationale d'Informatique (ENI), où il renforce ses compétences en développement logiciel, en conception d'applications web, en architecture logicielle et en gestion de bases de données. Cette formation lui permet d'acquérir une solide maîtrise des technologies modernes et des bonnes pratiques du développement informatique.";
         }
 
         // Contact / Embauche / Stage
@@ -138,7 +141,7 @@ app.post('/api/chat', async (req, res) => {
             normalizedMessage.includes('recrutement') ||
             normalizedMessage.includes('joindre')
         ) {
-            return "Actuellement à la recherche d'un stage académique de 2ème année ou d'une opportunité de collaboration professionnelle, il est joignable directement via le formulaire de contact de ce portfolio.";
+            return "Si votre demande concerne un stage, une opportunité d'embauche, une collaboration ou un recrutement, sachez qu'il est actuellement à la recherche d'un stage académique de 2ᵉ année et reste ouvert à toute opportunité professionnelle. N'hésitez pas à utiliser le formulaire de contact de ce portfolio pour échanger avec lui ; il vous répondra dans les meilleurs délais.";
         }
 
         // Remerciement
@@ -151,7 +154,7 @@ app.post('/api/chat', async (req, res) => {
         }
 
         // Réponse par défaut
-        return "Je suis l'assistant virtuel de ce portfolio. Je peux vous renseigner sur ses projets, ses compétences techniques, sa formation à l'ENI ou sa recherche de stage. Comment puis-je vous aider ?";
+        return "Bonjour et bienvenue sur ce portfolio ! Je suis l'assistant virtuel de Francky. Je peux vous renseigner sur son parcours, ses projets, ses compétences techniques, sa formation à l'École Nationale d'Informatique (ENI), ainsi que sur ses disponibilités pour un stage, une collaboration ou une opportunité de recrutement.\n\nJe suis spécialisé dans les informations liées à ce portfolio. Si votre question porte sur un autre sujet, comme une recette de cuisine, l'actualité ou des conseils généraux, je vous inviterai à revenir à des questions concernant son profil. Comment puis-je vous aider ?";
     };
 
     if (!hasValidGeminiKey) {
