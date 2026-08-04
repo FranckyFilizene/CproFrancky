@@ -154,8 +154,7 @@ app.post('/api/chat', async (req, res) => {
         }
 
         // Réponse par défaut
-        return "Bonjour et bienvenue sur ce portfolio ! Je suis l'assistant virtuel de Francky. Je peux vous renseigner sur son parcours, ses projets, ses compétences techniques, sa formation à l'École Nationale d'Informatique (ENI), ainsi que sur ses disponibilités pour un stage, une collaboration ou une opportunité de recrutement.\n\nJe suis spécialisé dans les informations liées à ce portfolio. Si votre question porte sur un autre sujet, comme une recette de cuisine, l'actualité ou des conseils généraux
-        , je vous inviterai à revenir à des questions concernant son profil. Comment puis-je vous aider ?";
+        return "Bonjour et bienvenue sur ce portfolio ! Je suis l'assistant virtuel de Francky. Je peux vous renseigner sur son parcours, ses projets, ses compétences techniques, sa formation à l'École Nationale d'Informatique (ENI), ainsi que sur ses disponibilités pour un stage, une collaboration ou une opportunité de recrutement.\n\nJe suis spécialisé dans les informations liées à ce portfolio. Si votre question porte sur un autre sujet, comme une recette de cuisine, l'actualité ou des conseils généraux, je vous inviterai à revenir à des questions concernant son profil. Comment puis-je vous aider ?";
     };
 
     if (!hasValidGeminiKey) {
