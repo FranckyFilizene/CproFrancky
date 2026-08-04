@@ -26,7 +26,7 @@ const Footer = () => {
                 </div>
                 <span className='flex flex-col'>
                     <h1 className="font-bold text-red-600 tracking-tighter">
-                        <span className='text-white'>C.rm</span>Francky
+                        <span className='text-white'>rm.</span>Francky
                     </h1>
                     <p>Design by Francky RM</p>
                     <p>2025-2026</p>

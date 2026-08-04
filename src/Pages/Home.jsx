@@ -15,7 +15,7 @@ const Home = () => {
           alt="profil"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/70 backdrop-blur-[1px]" />
+        <div className="absolute inset-0 bg-black/50 backdrop-blur-[1px]" />
         <div className="absolute inset-0 bg-red-900/10" />
       </div>
       <div className="relative z-10 gap-2 min-h-screen w-full md:w-[95%] max-w-7xl mx-auto px-4 md:px-10 flex items-center justify-center md:justify-between">

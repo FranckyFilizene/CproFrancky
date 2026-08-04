@@ -1,7 +1,7 @@
 import { BsGithub } from 'react-icons/bs'
 import { FcNext } from 'react-icons/fc'
 import { GiGemini } from 'react-icons/gi'
-import { DiMysql } from 'react-icons/di'
+import { DiIntellij, DiJava, DiMysql } from 'react-icons/di'
 import { FaCss } from 'react-icons/fa6'
 import { BsBootstrap, BsClaude, BsDatabase, BsOpenai } from 'react-icons/bs'
 import { FaHtml5, FaJs, FaLaravel, FaPhp, FaVuejs } from 'react-icons/fa'
@@ -12,12 +12,10 @@ import { SiGooglegemini, SiPostman, SiTailwindcss } from 'react-icons/si'
 const skills= [
     {
         id: "I",
-        title: "Mes Frameworks",
+        title: "Framework",
         progress: 57,
         icons: [
             {Icon : GrReactjs, Style :"text-sky-500" },
-            {Icon : FaLaravel, Style :"text-red-600" },
-            {Icon : FaVuejs, Style :"text-green-600" },
         ],
     },
     {
@@ -27,6 +25,7 @@ const skills= [
         icons: [
             {Icon : FaJs , Style : "text-yellow-300"},
             {Icon : FaPhp, Style :"text-blue-800"},
+            {Icon : DiJava, Style :"text-red-600"},
         ],
     },
     {

@@ -71,7 +71,7 @@ export default function AiAssistant() {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="flex h-12 w-12 items-center justify-center rounded-full bg-red-600 text-white shadow-lg shadow-red-500/30 transition-all duration-300 hover:scale-110 hover:bg-red-500 active:scale-95 sm:h-14 sm:w-14"
+          className="flex h-14 w-14 items-center justify-center rounded-full bg-red-600 text-white shadow-lg shadow-red-500/30 transition-all duration-300 hover:scale-110 hover:bg-red-500 active:scale-95 sm:h-14 sm:w-14"
         >
           {/* Icône de Chat (SVG) */}
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-6 w-6">

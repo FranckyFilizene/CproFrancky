@@ -94,7 +94,7 @@ const Contact = () => {
     <div className='min-h-screen w-[95%] p-5 md:flex justify-center gap-3 space-y-2'>
 
       <div className='md:w-[35%] w-full h-96 bg-slate-950 p-5 flex flex-col justify-around rounded-lg shadow-lg relative overflow-hidden'>
-        <div className='absolute w-44 h-44 rounded-[50%] bg-red-900 -top-5 z-0 -right-5 border-2 border-slate-600'></div>
+       <div className='absolute -top-5 -left-5 w-40 h-40 rounded-[50%] bg-red-900/40 z-0 blur-xl'></div>
         <div className='text-3xl tracking-tighter z-40'>
           <p>Prete a travailler ensemble ? <br />
             Envoyez moi un message</p>
@@ -137,7 +137,7 @@ const Contact = () => {
 
       <div className='flex flex-col justify-center items-center space-y-2 md:w-[50%] w-full h-full bg-gray-800 rounded-lg p-5'>
         <h2 className='text-3xl font-bold'>Contact</h2>
-        <form action="" className='w-full px-1' onSubmit={handleSubmit}>
+        <form action="" className='w-full justify-center items-center px-1' onSubmit={handleSubmit}>
           <label htmlFor="nom" className='text-slate-300 tracking-tighter'>Nom :</label>
           <div className='flex justify-center items-center text-slate-400 bg-slate-900 h-10 w-full px-2 gap-2 rounded-lg border border-slate-600'>
             <CgProfile size={20} className='text-slate-500' />
@@ -178,12 +178,12 @@ const Contact = () => {
 
             </textarea>
           </div>
-          <div>
+          <div className='flex justify-center items-center'>
             <button
               disabled={status.loading}
 
               type="submit"
-              className='flex justify-center items-center gap-1 rounded hover:bg-slate-700 cursor-pointer duration-300 bg-slate-950 font-bold px-4 py-2 mt-3 text-white'>
+              className='flex w-full justify-center items-center gap-1 rounded hover:bg-green-800 cursor-pointer duration-300 bg-green-700 font-bold px-4 py-2 mt-3 text-white'>
               {
                 status.loading ?
                   (<span className="flex justify-center items-center gap-1">Envoie en cours . . . </span>) :
