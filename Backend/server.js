@@ -209,15 +209,144 @@ app.post('/api/contact', async (req, res) => {
     }
 
     const mailOptions = {
-        from: `"Portfolio Francky" <${process.env.EMAIL_USER}>`,
-        replyTo: email,
-        to: process.env.EMAIL_USER,
-        subject: `Nouveau Message portfolio de ${name}`,
-        text: `Vous avez reçu un nouveau message depuis votre portfolio :\n\n` +
-            `Nom : ${name}\n` +
-            `Email : ${email}\n\n` +
-            `Message :\n${message}`
-    };
+  from: `"Portfolio" <${process.env.EMAIL_USER}>`,
+  replyTo: email,
+  to: process.env.EMAIL_USER,
+  subject: `📩 Nouveau message portfolio de ${name}`,
+  text: `Vous avez reçu un nouveau message depuis votre portfolio :\n\nNom : ${name}\nEmail : ${email}\n\nMessage :\n${message}`,
+  html: `
+    <!DOCTYPE html>
+    <html lang="fr">
+    <head>
+      <meta charset="UTF-8">
+      <style>
+        body {
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          background-color: #090d16;
+          color: #e2e8f0;
+          margin: 0;
+          padding: 20px;
+        }
+        .container {
+          max-width: 600px;
+          margin: 0 auto;
+          background-color: #0f172a;
+          border: 1px solid #7f1d1d;
+          border-radius: 12px;
+          overflow: hidden;
+          box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+        }
+        .header {
+          background-color: #450a0a;
+          padding: 20px;
+          text-align: center;
+          border-bottom: 1px solid #7f1d1d;
+        }
+        .header h2 {
+          margin: 0;
+          color: #f8fafc;
+          font-size: 20px;
+          letter-spacing: -0.5px;
+        }
+        .content {
+          padding: 25px;
+        }
+        .info-card {
+          background-color: #1e293b;
+          border-left: 4px solid #dc2626;
+          padding: 15px;
+          border-radius: 6px;
+          margin-bottom: 20px;
+        }
+        .info-item {
+          margin: 6px 0;
+          font-size: 14px;
+        }
+        .info-label {
+          color: #94a3b8;
+          font-weight: 600;
+        }
+        .info-value {
+          color: #f1f5f9;
+        }
+        .message-box {
+          background-color: #020617;
+          border: 1px solid #1e293b;
+          border-radius: 8px;
+          padding: 18px;
+          margin-top: 10px;
+        }
+        .message-title {
+          font-size: 13px;
+          text-transform: uppercase;
+          color: #ef4444;
+          font-weight: bold;
+          letter-spacing: 0.5px;
+          margin-bottom: 10px;
+        }
+        .message-text {
+          font-size: 14px;
+          line-height: 1.6;
+          color: #cbd5e1;
+          white-space: pre-wrap;
+        }
+        .footer {
+          text-align: center;
+          padding: 15px;
+          font-size: 12px;
+          color: #64748b;
+          border-top: 1px solid #1e293b;
+          background-color: #0b0f19;
+        }
+        .reply-btn {
+          display: inline-block;
+          margin-top: 20px;
+          padding: 10px 20px;
+          background-color: #dc2626;
+          color: #ffffff !important;
+          text-decoration: none;
+          font-weight: bold;
+          border-radius: 6px;
+          font-size: 13px;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <div class="header">
+          <h2>Nouveau message reçu depuis le Portfolio</h2>
+        </div>
+        
+        <div class="content">
+          <div class="info-card">
+            <div class="info-item">
+              <span class="info-label">Expéditeur :</span> 
+              <span class="info-value"><strong>${name}</strong></span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">E-mail :</span> 
+              <span class="info-value"><a href="mailto:${email}" style="color: #60a5fa;">${email}</a></span>
+            </div>
+          </div>
+
+          <div class="message-box">
+            <div class="message-title">Contenu du message :</div>
+            <div class="message-text">${message}</div>
+          </div>
+
+          <div style="text-align: center;">
+            <a href="mailto:${email}" class="reply-btn">Répondre directement</a>
+          </div>
+        </div>
+
+        <div class="footer">
+          Notification automatique • Portfolio Web
+        </div>
+      </div>
+    </body>
+    </html>
+  `
+};
 
     try {
         await transporter.sendMail(mailOptions);
