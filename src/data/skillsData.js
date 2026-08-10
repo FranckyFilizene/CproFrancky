@@ -1,7 +1,7 @@
 import { BsGithub } from 'react-icons/bs'
 import { FcNext } from 'react-icons/fc'
 import { GiGemini } from 'react-icons/gi'
-import { DiIntellij, DiJava, DiMysql } from 'react-icons/di'
+import { DiIntellij, DiJava, DiMysql, DiPostgresql } from 'react-icons/di'
 import { FaCss } from 'react-icons/fa6'
 import { BsBootstrap, BsClaude, BsDatabase, BsOpenai } from 'react-icons/bs'
 import { FaHtml5, FaJs, FaLaravel, FaPhp, FaVuejs } from 'react-icons/fa'
@@ -33,7 +33,8 @@ const skills= [
         title: "Base de données",
         progress: 80,
         icons: [
-            {Icon : DiMysql, Style :"text-sky-300"}
+            {Icon : DiMysql, Style :"text-sky-300"},
+            {Icon : DiPostgresql, Style :"text-sky-600"},
         ],
     },
     {

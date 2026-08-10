@@ -18,7 +18,7 @@ const Projet = () => {
   return (
     <div className='min-h-screen w-[95%] p-5 flex justify-center items-center flex-col'>
 
-      <div className='flex justify-center items-center flex-col gap-5 w-full h-[50%] p-5'>
+      <div className='flex justify-center items-center flex-col gap-5 w-full h-[50%]'>
         <h2 className='text-3xl text-white font-bold tracking-tighter'>Mes Projects</h2>
         <div className='md:flex justify-center items-start flex-wrap gap-5 w-full h-full space-y-5'>
 
