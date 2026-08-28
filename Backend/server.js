@@ -48,319 +48,609 @@ Si une question est hors sujet (politique, médecine, cuisine, etc.), explique p
 `;
 
 app.get('/', (req, res) => {
-    res.json({
-        status: 'ok',
-        message: 'API portfolio Francky opérationnelle',
-        endpoints: ['/api/chat', '/api/contact']
-    });
+  res.json({
+    status: 'ok',
+    message: 'API portfolio Francky opérationnelle',
+    endpoints: ['/api/chat', '/api/contact']
+  });
 });
 
 //route Api pour le chat
 app.post('/api/chat', async (req, res) => {
-    const { message } = req.body;
+  const { message } = req.body;
 
-    if (!message) {
-        return res.status(400).json({ error: 'Le message est vide.' });
+  if (!message) {
+    return res.status(400).json({ error: 'Le message est vide.' });
+  }
+
+  const normalizedMessage = String(message).trim().toLowerCase();
+
+  const getFallbackReply = () => {
+    // Salutations
+    if (
+      normalizedMessage.includes('bonjour') ||
+      normalizedMessage.includes('salut') ||
+      normalizedMessage.includes('bonsoir') ||
+      normalizedMessage.includes('hello')
+    ) {
+      return "Bonjour et bienvenue ! Je suis l'assistant virtuel de ce portfolio. Je suis à votre disposition pour vous présenter son profil, ses compétences en développement web et logiciel, ainsi que l'ensemble de ses réalisations.";
     }
 
-    const normalizedMessage = String(message).trim().toLowerCase();
+    // Projets
+    if (
+      normalizedMessage.includes('projet') ||
+      normalizedMessage.includes('portfolio') ||
+      normalizedMessage.includes('réalisation') ||
+      normalizedMessage.includes('realisation') ||
+      normalizedMessage.includes('travail') ||
+      normalizedMessage.includes('projet')
+    ) {
+      return "Voici un aperçu de ses principales réalisations, illustrant sa capacité à concevoir et développer des applications répondant à des besoins concrets, aussi bien dans le domaine académique que professionnel.\n\n" +
 
-    const getFallbackReply = () => {
-        // Salutations
-        if (
-            normalizedMessage.includes('bonjour') ||
-            normalizedMessage.includes('salut') ||
-            normalizedMessage.includes('bonsoir') ||
-            normalizedMessage.includes('hello')
-        ) {
-            return "Bonjour et bienvenue ! Je suis l'assistant virtuel de ce portfolio. Je suis à votre disposition pour vous présenter son profil, ses compétences en développement web et logiciel, ainsi que l'ensemble de ses réalisations.";
-        }
+        "🛠️ Applications de Gestion & Systèmes Métier :\n" +
+        "• Gestion de soutenance : Application permettant d'organiser et de suivre les soutenances, avec la gestion des étudiants, des sujets, des encadreurs et des jurys.\n" +
+        "• SPAvisiteur : Application web CRUD dédiée à la gestion complète des visiteurs, incluant l'enregistrement, le suivi et la consultation des données.\n" +
+        "• Ticketing : Plateforme de gestion des tickets d'assistance intégrant l'authentification des utilisateurs, le suivi des demandes, les statuts et un tableau de bord interactif.\n" +
+        "• Gestion d'association étudiante : Solution de gestion des membres, des événements, des cotisations et des statistiques pour faciliter l'administration d'une association.\n\n" +
 
-        // Projets
-        if (
-            normalizedMessage.includes('projet') ||
-            normalizedMessage.includes('portfolio') ||
-            normalizedMessage.includes('réalisation') ||
-            normalizedMessage.includes('realisation') ||
-            normalizedMessage.includes('travail') ||
-            normalizedMessage.includes('projet')
-        ) {
-            return "Voici un aperçu de ses principales réalisations, illustrant sa capacité à concevoir et développer des applications répondant à des besoins concrets, aussi bien dans le domaine académique que professionnel.\n\n" +
+        "🌐 Plateformes Web & Solutions Innovantes :\n" +
+        "• BOXIA : Plateforme web moderne intégrant un assistant conversationnel basé sur l'intelligence artificielle, développée avec React, Express.js, Tailwind CSS et une API IA.\n" +
+        "• GEARUP : Site e-commerce responsive conçu pour la vente d'équipements de voyage et de randonnée, mettant l'accent sur l'expérience utilisateur et un design moderne.\n\n" +
 
-                "🛠️ Applications de Gestion & Systèmes Métier :\n" +
-                "• Gestion de soutenance : Application permettant d'organiser et de suivre les soutenances, avec la gestion des étudiants, des sujets, des encadreurs et des jurys.\n" +
-                "• SPAvisiteur : Application web CRUD dédiée à la gestion complète des visiteurs, incluant l'enregistrement, le suivi et la consultation des données.\n" +
-                "• Ticketing : Plateforme de gestion des tickets d'assistance intégrant l'authentification des utilisateurs, le suivi des demandes, les statuts et un tableau de bord interactif.\n" +
-                "• Gestion d'association étudiante : Solution de gestion des membres, des événements, des cotisations et des statistiques pour faciliter l'administration d'une association.\n\n" +
-
-                "🌐 Plateformes Web & Solutions Innovantes :\n" +
-                "• BOXIA : Plateforme web moderne intégrant un assistant conversationnel basé sur l'intelligence artificielle, développée avec React, Express.js, Tailwind CSS et une API IA.\n" +
-                "• GEARUP : Site e-commerce responsive conçu pour la vente d'équipements de voyage et de randonnée, mettant l'accent sur l'expérience utilisateur et un design moderne.\n\n" +
-
-                "🎨 Sites Vitrines & Développement sur mesure :\n" +
-                "• Portfolios professionnels : Conception de sites vitrines personnalisés, responsives et optimisés pour mettre en valeur le profil et les réalisations de développeurs.\n" +
-                "• Site web pour un club : Développement d'une plateforme permettant de gérer les activités, les actualités et les membres du club avec React, Express.js et MySQL."
-        }
-
-        // Compétences
-        if (
-            normalizedMessage.includes('compétence') ||
-            normalizedMessage.includes('competence') ||
-            normalizedMessage.includes('technologie') ||
-            normalizedMessage.includes('tech') ||
-            normalizedMessage.includes('framework') ||
-            normalizedMessage.includes('langage') ||
-            normalizedMessage.includes('outil')
-        ) {
-            return "Ses compétences techniques couvrent l'ensemble du cycle de développement d'applications web, lui permettant de concevoir des solutions complètes, performantes et évolutives.\n\n" +
-                "• Développement Frontend : Développement d'interfaces utilisateur modernes, responsives et interactives avec React, Vue.js, JavaScript (ES6+), Tailwind CSS, SCSS, HTML5 et CSS3, en privilégiant l'expérience utilisateur.\n" +
-                "• Développement Backend : Création d'API REST sécurisées, gestion de la logique applicative et intégration de services avec PHP, Node.js et Express.js.\n" +
-                "• Gestion de bases de données : Conception, modélisation et optimisation de bases de données relationnelles avec MySQL et PostgreSQL afin de garantir la fiabilité, la cohérence et les performances des données."
-        }
-
-        // Formation
-        if (
-            normalizedMessage.includes('formation') ||
-            normalizedMessage.includes('étude') ||
-            normalizedMessage.includes('etude') ||
-            normalizedMessage.includes('etudie') ||
-            normalizedMessage.includes('université') ||
-            normalizedMessage.includes('ecole') ||
-            normalizedMessage.includes('eni') ||
-            normalizedMessage.includes('parcours')
-        ) {
-            return "Il poursuit actuellement ses études en 2ᵉ année à l'École Nationale d'Informatique (ENI), où il renforce ses compétences en développement logiciel, en conception d'applications web, en architecture logicielle et en gestion de bases de données. Cette formation lui permet d'acquérir une solide maîtrise des technologies modernes et des bonnes pratiques du développement informatique.";
-        }
-
-        // Contact / Embauche / Stage
-        if (
-            normalizedMessage.includes('contact') ||
-            normalizedMessage.includes('email') ||
-            normalizedMessage.includes('embauche') ||
-            normalizedMessage.includes('stage') ||
-            normalizedMessage.includes('recrutement') ||
-            normalizedMessage.includes('joindre')
-        ) {
-            return "Si votre demande concerne un stage, une opportunité d'embauche, une collaboration ou un recrutement, sachez qu'il est actuellement à la recherche d'un stage académique de 2ᵉ année et reste ouvert à toute opportunité professionnelle. N'hésitez pas à utiliser le formulaire de contact de ce portfolio pour échanger avec lui ; il vous répondra dans les meilleurs délais.";
-        }
-
-        // Remerciement
-        if (
-            normalizedMessage.includes('merci') ||
-            normalizedMessage.includes('thanks') ||
-            normalizedMessage.includes('super')
-        ) {
-            return "C'est un plaisir de vous renseigner ! N'hésitez pas si vous souhaitez obtenir d'autres détails sur son parcours ou ses projets.";
-        }
-
-        // Réponse par défaut
-        return "Bonjour et bienvenue sur ce portfolio ! Je suis l'assistant virtuel de Francky. Je peux vous renseigner sur son parcours, ses projets, ses compétences techniques, sa formation à l'École Nationale d'Informatique (ENI), ainsi que sur ses disponibilités pour un stage, une collaboration ou une opportunité de recrutement.\n\nJe suis spécialisé dans les informations liées à ce portfolio. Si votre question porte sur un autre sujet, comme une recette de cuisine, l'actualité ou des conseils généraux, je vous inviterai à revenir à des questions concernant son profil. Comment puis-je vous aider ?";
-    };
-
-    if (!hasValidGeminiKey) {
-        return res.json({ reply: getFallbackReply() });
+        "🎨 Sites Vitrines & Développement sur mesure :\n" +
+        "• Portfolios professionnels : Conception de sites vitrines personnalisés, responsives et optimisés pour mettre en valeur le profil et les réalisations de développeurs.\n" +
+        "• Site web pour un club : Développement d'une plateforme permettant de gérer les activités, les actualités et les membres du club avec React, Express.js et MySQL."
     }
 
-    try {
-        const modelsToTry = ['gemini-2.0-flash', 'gemini-2.0-flash-lite'];
-        let lastError = null;
-
-        for (const modelName of modelsToTry) {
-            try {
-                const model = genAI.getGenerativeModel({
-                    model: modelName,
-                    systemInstruction: SYSTEM_INSTRUCTION
-                });
-
-                const result = await model.generateContent(message);
-                const response = await result.response;
-
-                return res.json({ reply: response.text() });
-            } catch (error) {
-                lastError = error;
-                console.error(`Erreur avec ${modelName}:`, error);
-            }
-        }
-
-        throw lastError || new Error('Aucun modèle Gemini n’a pu répondre.');
-    } catch (error) {
-        console.error('Erreur Gemini API:', error);
-        return res.json({ reply: getFallbackReply() });
+    // Compétences
+    if (
+      normalizedMessage.includes('compétence') ||
+      normalizedMessage.includes('competence') ||
+      normalizedMessage.includes('technologie') ||
+      normalizedMessage.includes('tech') ||
+      normalizedMessage.includes('framework') ||
+      normalizedMessage.includes('langage') ||
+      normalizedMessage.includes('outil')
+    ) {
+      return "Ses compétences techniques couvrent l'ensemble du cycle de développement d'applications web, lui permettant de concevoir des solutions complètes, performantes et évolutives.\n\n" +
+        "• Développement Frontend : Développement d'interfaces utilisateur modernes, responsives et interactives avec React, Vue.js, JavaScript (ES6+), Tailwind CSS, SCSS, HTML5 et CSS3, en privilégiant l'expérience utilisateur.\n" +
+        "• Développement Backend : Création d'API REST sécurisées, gestion de la logique applicative et intégration de services avec PHP, Node.js et Express.js.\n" +
+        "• Gestion de bases de données : Conception, modélisation et optimisation de bases de données relationnelles avec MySQL et PostgreSQL afin de garantir la fiabilité, la cohérence et les performances des données."
     }
+
+    // Formation
+    if (
+      normalizedMessage.includes('formation') ||
+      normalizedMessage.includes('étude') ||
+      normalizedMessage.includes('etude') ||
+      normalizedMessage.includes('etudie') ||
+      normalizedMessage.includes('université') ||
+      normalizedMessage.includes('ecole') ||
+      normalizedMessage.includes('eni') ||
+      normalizedMessage.includes('parcours')
+    ) {
+      return "Il poursuit actuellement ses études en 2ᵉ année à l'École Nationale d'Informatique (ENI), où il renforce ses compétences en développement logiciel, en conception d'applications web, en architecture logicielle et en gestion de bases de données. Cette formation lui permet d'acquérir une solide maîtrise des technologies modernes et des bonnes pratiques du développement informatique.";
+    }
+
+    // Contact / Embauche / Stage
+    if (
+      normalizedMessage.includes('contact') ||
+      normalizedMessage.includes('email') ||
+      normalizedMessage.includes('embauche') ||
+      normalizedMessage.includes('stage') ||
+      normalizedMessage.includes('recrutement') ||
+      normalizedMessage.includes('joindre')
+    ) {
+      return "Si votre demande concerne un stage, une opportunité d'embauche, une collaboration ou un recrutement, sachez qu'il est actuellement à la recherche d'un stage académique de 2ᵉ année et reste ouvert à toute opportunité professionnelle. N'hésitez pas à utiliser le formulaire de contact de ce portfolio pour échanger avec lui ; il vous répondra dans les meilleurs délais.";
+    }
+
+    // Remerciement
+    if (
+      normalizedMessage.includes('merci') ||
+      normalizedMessage.includes('thanks') ||
+      normalizedMessage.includes('super')
+    ) {
+      return "C'est un plaisir de vous renseigner ! N'hésitez pas si vous souhaitez obtenir d'autres détails sur son parcours ou ses projets.";
+    }
+
+    // Réponse par défaut
+    return "Bonjour et bienvenue sur ce portfolio ! Je suis l'assistant virtuel de Francky. Je peux vous renseigner sur son parcours, ses projets, ses compétences techniques, sa formation à l'École Nationale d'Informatique (ENI), ainsi que sur ses disponibilités pour un stage, une collaboration ou une opportunité de recrutement.\n\nJe suis spécialisé dans les informations liées à ce portfolio. Si votre question porte sur un autre sujet, comme une recette de cuisine, l'actualité ou des conseils généraux, je vous inviterai à revenir à des questions concernant son profil. Comment puis-je vous aider ?";
+  };
+
+  if (!hasValidGeminiKey) {
+    return res.json({ reply: getFallbackReply() });
+  }
+
+  try {
+    const modelsToTry = ['gemini-2.0-flash', 'gemini-2.0-flash-lite'];
+    let lastError = null;
+
+    for (const modelName of modelsToTry) {
+      try {
+        const model = genAI.getGenerativeModel({
+          model: modelName,
+          systemInstruction: SYSTEM_INSTRUCTION
+        });
+
+        const result = await model.generateContent(message);
+        const response = await result.response;
+
+        return res.json({ reply: response.text() });
+      } catch (error) {
+        lastError = error;
+        console.error(`Erreur avec ${modelName}:`, error);
+      }
+    }
+
+    throw lastError || new Error('Aucun modèle Gemini n’a pu répondre.');
+  } catch (error) {
+    console.error('Erreur Gemini API:', error);
+    return res.json({ reply: getFallbackReply() });
+  }
 });
 
 
 
 //configuration du transporteur pour nodemailer avec Gmail
 const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-    }
+  service: 'gmail',
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS
+  }
 });
 
 //Creer le route post pour revevor les données du formulaire de contact et envoyer un email
 app.post('/api/contact', async (req, res) => {
-    const { name, email, message } = req.body;
+  const { name, email, message } = req.body;
 
-    if (!name || !email || !message) {
-        return res.status(400).json({ error: 'Tous les champs sont requis.' });
+  if (!name || !email || !message) {
+    return res.status(400).json({ error: 'Tous les champs sont requis.' });
+  }
+
+  const mailOptions = {
+    from: `"Portfolio • Francky RM" <${process.env.EMAIL_USER}>`,
+    replyTo: email,
+    to: process.env.EMAIL_USER,
+
+    subject: `📩 Nouveau message de ${name} — Portfolio`,
+
+    text: `
+NOUVEAU MESSAGE — PORTFOLIO FRANCKY RM
+
+Vous avez reçu un nouveau message depuis votre portfolio.
+
+EXPÉDITEUR
+Nom : ${name}
+Email : ${email}
+
+MESSAGE
+${message}
+
+--------------------------------
+Vous pouvez répondre directement à ${email}.
+Portfolio • Francky RM
+`,
+
+    html: `
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Nouveau message — Portfolio</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
     }
 
-    const mailOptions = {
-  from: `"Portfolio" <${process.env.EMAIL_USER}>`,
-  replyTo: email,
-  to: process.env.EMAIL_USER,
-  subject: `📩 Nouveau message portfolio de ${name}`,
-  text: `Vous avez reçu un nouveau message depuis votre portfolio :\n\nNom : ${name}\nEmail : ${email}\n\nMessage :\n${message}`,
-  html: `
-    <!DOCTYPE html>
-    <html lang="fr">
-    <head>
-      <meta charset="UTF-8">
-      <style>
-        body {
-          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-          background-color: #090d16;
-          color: #e2e8f0;
-          margin: 0;
-          padding: 20px;
-        }
-        .container {
-          max-width: 600px;
-          margin: 0 auto;
-          background-color: #0f172a;
-          border: 1px solid #7f1d1d;
-          border-radius: 12px;
-          overflow: hidden;
-          box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
-        }
-        .header {
-          background-color: #450a0a;
-          padding: 20px;
-          text-align: center;
-          border-bottom: 1px solid #7f1d1d;
-        }
-        .header h2 {
-          margin: 0;
-          color: #f8fafc;
-          font-size: 20px;
-          letter-spacing: -0.5px;
-        }
-        .content {
-          padding: 25px;
-        }
-        .info-card {
-          background-color: #1e293b;
-          border-left: 4px solid #dc2626;
-          padding: 15px;
-          border-radius: 6px;
-          margin-bottom: 20px;
-        }
-        .info-item {
-          margin: 6px 0;
-          font-size: 14px;
-        }
-        .info-label {
-          color: #94a3b8;
-          font-weight: 600;
-        }
-        .info-value {
-          color: #f1f5f9;
-        }
-        .message-box {
-          background-color: #020617;
-          border: 1px solid #1e293b;
-          border-radius: 8px;
-          padding: 18px;
-          margin-top: 10px;
-        }
-        .message-title {
-          font-size: 13px;
-          text-transform: uppercase;
-          color: #ef4444;
-          font-weight: bold;
-          letter-spacing: 0.5px;
-          margin-bottom: 10px;
-        }
-        .message-text {
-          font-size: 14px;
-          line-height: 1.6;
-          color: #cbd5e1;
-          white-space: pre-wrap;
-        }
-        .footer {
-          text-align: center;
-          padding: 15px;
-          font-size: 12px;
-          color: #64748b;
-          border-top: 1px solid #1e293b;
-          background-color: #0b0f19;
-        }
-        .reply-btn {
-          display: inline-block;
-          margin-top: 20px;
-          padding: 10px 20px;
-          background-color: #dc2626;
-          color: #ffffff !important;
-          text-decoration: none;
-          font-weight: bold;
-          border-radius: 6px;
-          font-size: 13px;
-        }
-      </style>
-    </head>
-    <body>
-      <div class="container">
-        <div class="header">
-          <h2>Nouveau message reçu depuis le Portfolio</h2>
-        </div>
-        
-        <div class="content">
-          <div class="info-card">
-            <div class="info-item">
-              <span class="info-label">Expéditeur :</span> 
-              <span class="info-value"><strong>${name}</strong></span>
-            </div>
-            <div class="info-item">
-              <span class="info-label">E-mail :</span> 
-              <span class="info-value"><a href="mailto:${email}" style="color: #60a5fa;">${email}</a></span>
-            </div>
-          </div>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f1f5f9;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+      color: #0f172a;
+    }
 
-          <div class="message-box">
-            <div class="message-title">Contenu du message :</div>
-            <div class="message-text">${message}</div>
-          </div>
+    .wrapper {
+      width: 100%;
+      padding: 40px 15px;
+      background-color: #f1f5f9;
+    }
 
-          <div style="text-align: center;">
-            <a href="mailto:${email}" class="reply-btn">Répondre directement</a>
-          </div>
+    .container {
+      width: 100%;
+      max-width: 620px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #e2e8f0;
+      box-shadow:
+        0 10px 25px rgba(15, 23, 42, 0.08);
+    }
+
+    /* ================= HEADER ================= */
+
+    .header {
+      background-color: #020617;
+      padding: 28px 30px;
+      border-bottom: 3px solid #dc2626;
+    }
+
+    .brand {
+      font-size: 18px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.5px;
+    }
+
+    .brand span {
+      color: #ef4444;
+    }
+
+    .header-content {
+      margin-top: 22px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 5px 10px;
+      background-color: rgba(220, 38, 38, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      color: #f87171;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+
+    .header-title {
+      margin: 12px 0 0 0;
+      color: #ffffff;
+      font-size: 24px;
+      line-height: 1.3;
+      font-weight: 700;
+    }
+
+    .header-description {
+      margin: 8px 0 0 0;
+      color: #94a3b8;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    /* ================= CONTENT ================= */
+
+    .content {
+      padding: 30px;
+    }
+
+    .section-title {
+      margin: 0 0 15px 0;
+      font-size: 12px;
+      font-weight: 700;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    /* ================= EXPÉDITEUR ================= */
+
+    .sender {
+      padding: 18px;
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+    }
+
+    .sender-row {
+      display: table;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    .sender-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .sender-label {
+      display: table-cell;
+      width: 80px;
+      color: #64748b;
+      font-size: 13px;
+      font-weight: 600;
+      vertical-align: middle;
+    }
+
+    .sender-value {
+      display: table-cell;
+      color: #0f172a;
+      font-size: 14px;
+      font-weight: 600;
+      vertical-align: middle;
+    }
+
+    .sender-email {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    /* ================= MESSAGE ================= */
+
+    .message-section {
+      margin-top: 28px;
+    }
+
+    .message {
+      padding: 20px;
+      background-color: #020617;
+      border-radius: 12px;
+      border-left: 4px solid #dc2626;
+    }
+
+    .message-text {
+      margin: 0;
+      color: #cbd5e1;
+      font-size: 14px;
+      line-height: 1.7;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    /* ================= ACTION ================= */
+
+    .action {
+      text-align: center;
+      padding-top: 28px;
+    }
+
+    .reply-button {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #dc2626;
+      color: #ffffff !important;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .reply-button:hover {
+      background-color: #b91c1c;
+    }
+
+    .action-description {
+      margin: 12px 0 0 0;
+      color: #94a3b8;
+      font-size: 11px;
+    }
+
+    /* ================= FOOTER ================= */
+
+    .footer {
+      padding: 20px 30px;
+      background-color: #f8fafc;
+      border-top: 1px solid #e2e8f0;
+      text-align: center;
+    }
+
+    .footer-brand {
+      margin: 0;
+      color: #0f172a;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .footer-text {
+      margin: 5px 0 0 0;
+      color: #94a3b8;
+      font-size: 11px;
+    }
+
+    /* ================= MOBILE ================= */
+
+    @media only screen and (max-width: 600px) {
+
+      .wrapper {
+        padding: 20px 10px;
+      }
+
+      .header {
+        padding: 24px 20px;
+      }
+
+      .content {
+        padding: 22px 20px;
+      }
+
+      .header-title {
+        font-size: 21px;
+      }
+
+      .sender-label {
+        width: 65px;
+      }
+
+      .footer {
+        padding: 18px 20px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <div class="wrapper">
+
+    <div class="container">
+
+      <!-- ================= HEADER ================= -->
+
+      <div class="header">
+
+        <div class="brand">
+          <span>rm.</span>Francky
         </div>
 
-        <div class="footer">
-          Notification automatique • Portfolio Web
+        <div class="header-content">
+
+          <span class="badge">
+            Nouveau message
+          </span>
+
+          <h1 class="header-title">
+            Vous avez reçu un message
+          </h1>
+
+          <p class="header-description">
+            Une nouvelle personne vous a contacté depuis votre portfolio.
+          </p>
+
         </div>
+
       </div>
-    </body>
-    </html>
-  `
-};
 
-    try {
-        await transporter.sendMail(mailOptions);
-        return res.json({ success: 'Votre message a été envoyé avec succès' });
-    } catch (error) {
-        console.error('Erreur Nodemailer :', error);
-        return res.json({ success: 'Votre message a été reçu. L’envoi par e-mail n’a pas pu être finalisé pour le moment.' });
-    }
+
+      <!-- ================= CONTENT ================= -->
+
+      <div class="content">
+
+        <!-- Expéditeur -->
+
+        <p class="section-title">
+          Informations de l'expéditeur
+        </p>
+
+        <div class="sender">
+
+          <div class="sender-row">
+
+            <span class="sender-label">
+              Nom
+            </span>
+
+            <span class="sender-value">
+              ${name}
+            </span>
+
+          </div>
+
+          <div class="sender-row">
+
+            <span class="sender-label">
+              Email
+            </span>
+
+            <span class="sender-value">
+
+              <a
+                href="mailto:${email}"
+                class="sender-email"
+              >
+                ${email}
+              </a>
+
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- Message -->
+
+        <div class="message-section">
+
+          <p class="section-title">
+            Message
+          </p>
+
+          <div class="message">
+
+            <p class="message-text">
+              ${message}
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- Action -->
+
+        <div class="action">
+
+          <a
+            href="mailto:${email}"
+            class="reply-button"
+          >
+            Répondre à ${name}
+          </a>
+
+          <p class="action-description">
+            Cliquez sur le bouton pour répondre directement à l'expéditeur.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- ================= FOOTER ================= -->
+
+      <div class="footer">
+
+        <p class="footer-brand">
+          rm.Francky — Portfolio
+        </p>
+
+        <p class="footer-text">
+          Notification automatique • Ce message a été envoyé depuis le formulaire de contact.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+
+</html>
+`
+
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    return res.json({ success: 'Votre message a été envoyé avec succès' });
+  } catch (error) {
+    console.error('Erreur Nodemailer :', error);
+    return res.json({ success: 'Votre message a été reçu. L’envoi par e-mail n’a pas pu être finalisé pour le moment.' });
+  }
 });
 
 if (!process.env.VERCEL) {
-    app.listen(PORT, () => {
-        console.log(`Le serveur de l'Agent IA tourne sur http://localhost:${PORT}`);
-    });
+  app.listen(PORT, () => {
+    console.log(`Le serveur de l'Agent IA tourne sur http://localhost:${PORT}`);
+  });
 }
 
 export default app;
