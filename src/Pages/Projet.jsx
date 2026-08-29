@@ -8,7 +8,7 @@ import visiteur from '../../src/assets/visiter.png'
 import sout from '../../src/assets/soutenance.png'
 import boxia from '../../src/assets/box-ia.png'
 import { BsGithub } from 'react-icons/bs'
-import {motion} from 'framer-motion'
+import { motion } from 'framer-motion'
 import { FcNext } from 'react-icons/fc'
 import { GiGemini } from 'react-icons/gi'
 import { DiMysql } from 'react-icons/di'
@@ -57,9 +57,13 @@ const Projet = () => {
             <motion.div
               key={skill.id}
 
+              /* =========================
+                 ANIMATION D'APPARITION
+              ========================= */
+
               initial={{
                 opacity: 0,
-                y: 80
+                y: 60
               }}
 
               whileInView={{
@@ -78,52 +82,196 @@ const Projet = () => {
                 ease: "easeOut"
               }}
 
-              className="relative flex flex-col justify-between min-h-[220px] bg-slate-950 rounded-xl border border-slate-800 p-5 hover:border-red-500 transition-all duration-300"
+              /* =========================
+                 ANIMATION AU HOVER
+              ========================= */
+
+              whileHover={{
+                y: -8,
+                scale: 1.02,
+                transition: {
+                  duration: 0.3,
+                  ease: "easeOut"
+                }
+              }}
+
+              className="
+        group
+        relative
+        flex
+        flex-col
+        justify-between
+        min-h-[220px]
+        bg-slate-950
+        rounded-xl
+        border
+        border-slate-800
+        p-5
+        overflow-hidden
+        transition-all
+        duration-300
+        hover:border-red-500
+        hover:shadow-[0_0_30px_rgba(239,68,68,0.15)]
+      "
             >
 
-              {/* Numéro */}
-              <div className="absolute top-3 right-3 flex items-center justify-center w-10 h-10 rounded-full bg-slate-800 text-white font-bold">
+              {/* =========================
+          GLOW AU HOVER
+      ========================= */}
+
+              <div
+                className="
+          pointer-events-none
+          absolute
+          -top-24
+          -right-24
+          w-48
+          h-48
+          rounded-full
+          bg-red-600/10
+          blur-3xl
+          opacity-0
+          group-hover:opacity-100
+          transition-opacity
+          duration-500
+        "
+              />
+
+              {/* =========================
+          NUMÉRO
+      ========================= */}
+
+              <div
+                className="
+          absolute
+          top-3
+          right-3
+          flex
+          items-center
+          justify-center
+          w-10
+          h-10
+          rounded-full
+          bg-slate-800
+          text-white
+          font-bold
+          transition-all
+          duration-300
+          group-hover:bg-red-600
+          group-hover:scale-110
+        "
+              >
                 {skill.id}
               </div>
 
-              {/* Titre */}
-              <h2 className="text-sm md:text-base font-semibold tracking-[4px] uppercase">
+
+              {/* =========================
+          TITRE
+      ========================= */}
+
+              <h2
+                className="
+          relative
+          text-sm
+          md:text-base
+          font-semibold
+          tracking-[4px]
+          uppercase
+          transition-colors
+          duration-300
+          group-hover:text-red-500
+        "
+              >
                 {skill.title}
               </h2>
 
-              {/* Icônes */}
-              <div className="flex flex-wrap items-center gap-4 text-3xl my-8">
+
+              {/*ICÔNES*/}
+
+              <div className="relative flex flex-wrap items-center gap-4 text-3xl my-8">
 
                 {skill.icons.map(({ Icon, Style }, index) => (
 
-                  <Icon
+                  <motion.div
                     key={index}
-                    className={Style}
-                  />
+
+                    whileHover={{
+                      y: -5,
+                      scale: 1.15,
+                      rotate: 3
+                    }}
+
+                    transition={{
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 15
+                    }}
+                  >
+
+                    <Icon
+                      className={`
+                ${Style}
+                transition-all
+                duration-300
+                group-hover:drop-shadow-[0_0_8px_rgba(239,68,68,0.25)]
+              `}
+                    />
+
+                  </motion.div>
 
                 ))}
 
               </div>
 
-              {/* Barre de progression */}
-              <div className="flex items-center gap-3">
 
-                <div className="flex-1 h-0.5 bg-slate-800 rounded-full overflow-hidden">
+              {/*BARRE DE PROGRESSION*/}
+
+              <div className="relative flex items-center gap-3">
+
+                <div
+                  className="
+            flex-1
+            h-0.5
+            bg-slate-800
+            rounded-full
+            overflow-hidden
+          "
+                >
 
                   <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${skill.progress}%` }}
+                    initial={{
+                      width: 0
+                    }}
+
+                    whileInView={{
+                      width: `${skill.progress}%`
+                    }}
+
                     transition={{
                       duration: 1,
                       delay: skill.id * 0.12 + 0.3,
                       ease: "easeOut"
                     }}
-                    className="h-full rounded-full bg-red-600"
+
+                    className="
+              h-full
+              rounded-full
+              bg-red-600
+            "
                   />
 
                 </div>
 
-                <span className="text-xs font-semibold text-slate-400">
+                <span
+                  className="
+            text-xs
+            font-semibold
+            text-slate-400
+            transition-colors
+            duration-300
+            group-hover:text-red-400
+          "
+                >
                   {skill.progress}%
                 </span>
 

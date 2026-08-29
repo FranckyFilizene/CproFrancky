@@ -7,6 +7,7 @@ import { BsBootstrap, BsClaude, BsDatabase, BsOpenai } from 'react-icons/bs'
 import { FaHtml5, FaJs, FaLaravel, FaPhp, FaVuejs } from 'react-icons/fa'
 import { GrReactjs } from 'react-icons/gr'
 import { SiGooglegemini, SiPostman, SiTailwindcss } from 'react-icons/si'
+import { TbApi } from "react-icons/tb";
 
 
 const skills= [
@@ -21,7 +22,7 @@ const skills= [
     {
         id: "II",
         title: "Mes Langages",
-        progress: 75,
+        progress: 55,
         icons: [
             {Icon : FaJs , Style : "text-yellow-300"},
             {Icon : FaPhp, Style :"text-blue-800"},
@@ -31,7 +32,7 @@ const skills= [
     {
         id: "III",
         title: "Base de données",
-        progress: 80,
+        progress: 45,
         icons: [
             {Icon : DiMysql, Style :"text-sky-300"},
             {Icon : DiPostgresql, Style :"text-sky-600"},
@@ -51,7 +52,7 @@ const skills= [
     {
         id: "V",
         title: "Outils IA",
-        progress: 70,
+        progress: 50,
         icons: [
             {Icon : BsClaude, Style: 'text-orange-800'},
             {Icon : BsOpenai, Style :'text-white'},
@@ -61,9 +62,9 @@ const skills= [
     {
         id : "VI",
         title : "Outils Test API",
-        progress : 85,
+        progress : 30,
         icons: [
-            {Icon : SiPostman, Style : "text-orange-600"}
+            {Icon : SiPostman, Style : "text-orange-600"},
         ]
     }
 ];

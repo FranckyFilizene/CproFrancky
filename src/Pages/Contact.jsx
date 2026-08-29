@@ -189,7 +189,7 @@ const Contact = () => {
             delay: 0.15,
             ease: "easeOut"
           }}
-          className="flex flex-col justify-center items-center space-y-2 md:w-[50%] w-full h-full bg-gray-800 rounded-lg p-5"
+          className="flex flex-col justify-center items-center space-y-2 md:w-[50%] w-full h-full bg-gray-950 rounded-lg p-2"
         >
 
           {/* Formulaire */}
@@ -285,7 +285,7 @@ const Contact = () => {
               <button
                 disabled={status.loading}
                 type="submit"
-                className="flex w-full justify-center items-center gap-1 rounded hover:bg-green-800 cursor-pointer duration-300 bg-green-700 font-bold px-4 py-2 mt-3 text-white"
+                className="flex w-full justify-center items-center gap-1 rounded hover:bg-slate-800 cursor-pointer duration-300 bg-slate-900 font-bold px-4 py-2 mt-3 text-white"
               >
 
                 {status.loading ? (

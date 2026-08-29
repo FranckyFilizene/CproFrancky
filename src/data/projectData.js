@@ -15,6 +15,7 @@ import {
     DiLaravel
 } from "react-icons/di";
 import { SiExpress, SiTailwindcss } from "react-icons/si";
+import { TbSchema } from "react-icons/tb";
 
 const project = [
 
@@ -51,12 +52,13 @@ const project = [
         type: "WebApp.2026",
         title: "Gestion de pharmacie",
         image: pharmacie,
-        description: "Intelligence artificiel rapide, précise et accessible a tous. Toujour pret a repondre a tout les question ",
+        description: "Application desktop de gestion de pharmacie développée avec JavaFX et PostgreSQL, permettant de gérer les médicaments, les stocks et les achats.",
         technologies: [
             { Icon: DiJava, Style: "text-red-500" },
             { Icon: DiCss3, Style: "text-blue-600" },
             { Icon: DiIntellij, Style: "white" },
-            { Icon: DiPostgresql, Style: "text-blue-400" }
+            { Icon: DiPostgresql, Style: "text-blue-400" },
+            { Icon: TbSchema, Style: "text-blue-700" }
         ],
         github: "https://github.com/FranckyFilizene/boxia",
         demo: "https://box-ia.vercel.app/"
