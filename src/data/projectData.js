@@ -60,8 +60,8 @@ const project = [
             { Icon: DiPostgresql, Style: "text-blue-400" },
             { Icon: TbSchema, Style: "text-blue-700" }
         ],
-        github: "https://github.com/FranckyFilizene/boxia",
-        demo: "https://box-ia.vercel.app/"
+        github: "https://github.com/FranckyFilizene/AppPharmacie.git",
+        demo: ""
     },
     {
         id: 4,

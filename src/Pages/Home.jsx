@@ -1,7 +1,7 @@
 import React from 'react'
 import { BsGithub } from 'react-icons/bs'
 import { FaFacebook, FaWhatsapp } from 'react-icons/fa'
-import profil from '../../src/assets/porfil.png'
+import profil from '../../src/assets/porfil.webp'
 import { BiLocationPlus } from 'react-icons/bi'
 
 const Home = () => {
@@ -13,6 +13,8 @@ const Home = () => {
         <img
           src={profil}
           alt="profil"
+          loading='lazy'
+          decoding='async'
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/50 backdrop-blur-[1px]" />
@@ -88,6 +90,8 @@ const Home = () => {
             <img
               src={profil}
               alt="Profil"
+              loading='lazy'
+              decoding='async'
               className="w-[320px] object-cover"
             />
           </div>
