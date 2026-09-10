@@ -53,97 +53,97 @@ function Navbar() {
         >
           <li
             className="
-    flex items-center
+                flex items-center
 
-    gap-4 md:gap-2
+                gap-4 md:gap-2
 
-    px-4 py-3
-    md:px-3 md:py-2
+                px-4 py-3
+                md:px-3 md:py-2
 
-    rounded-xl md:rounded-lg
+                rounded-xl md:rounded-lg
 
-    w-full md:w-auto
+                w-full md:w-auto
 
-    hover:bg-slate-800
-    md:hover:bg-transparent
+                hover:bg-slate-800
+                md:hover:bg-transparent
 
-    hover:text-red-400
-    transition-all
-    duration-300
-"
+                hover:text-red-400
+                transition-all
+                duration-300
+            "
           >
             <FaHome size={20} />
             <a href="#home" onClick={() => setIsOpen(false)} className="hover:text-red-400 transition">Acceuil</a>
           </li>
           <li
-  className="
-    flex items-center
+            className="
+                  flex items-center
 
-    gap-4 md:gap-2
+                  gap-4 md:gap-2
 
-    px-4 py-3
-    md:px-3 md:py-2
+                  px-4 py-3
+                  md:px-3 md:py-2
 
-    rounded-xl md:rounded-lg
+                  rounded-xl md:rounded-lg
 
-    w-full md:w-auto
+                  w-full md:w-auto
 
-    hover:bg-slate-800
-    md:hover:bg-transparent
+                  hover:bg-slate-800
+                  md:hover:bg-transparent
 
-    hover:text-red-400
-    transition-all
-    duration-300
-"
->
+                  hover:text-red-400
+                  transition-all
+                  duration-300
+              "
+            >
             <GrProjects />
             <a href="#projet" onClick={() => setIsOpen(false)} className="hover:text-red-400 transition">Projets</a>
           </li>
           <li
-  className="
-    flex items-center
+            className="
+              flex items-center
 
-    gap-4 md:gap-2
+              gap-4 md:gap-2
 
-    px-4 py-3
-    md:px-3 md:py-2
+              px-4 py-3
+              md:px-3 md:py-2
 
-    rounded-xl md:rounded-lg
+              rounded-xl md:rounded-lg
 
-    w-full md:w-auto
+              w-full md:w-auto
 
-    hover:bg-slate-800
-    md:hover:bg-transparent
+              hover:bg-slate-800
+              md:hover:bg-transparent
 
-    hover:text-red-400
-    transition-all
-    duration-300
-"
->
+              hover:text-red-400
+              transition-all
+              duration-300
+          "
+          >
             <GiSkills />
             <a href="#skills" onClick={() => setIsOpen(false)} className="hover:text-red-400 transition">Skills</a>
           </li>
           <li
-  className="
-    flex items-center
+            className="
+              flex items-center
 
-    gap-4 md:gap-2
+              gap-4 md:gap-2
 
-    px-4 py-3
-    md:px-3 md:py-2
+              px-4 py-3
+              md:px-3 md:py-2
 
-    rounded-xl md:rounded-lg
+              rounded-xl md:rounded-lg
 
-    w-full md:w-auto
+              w-full md:w-auto
 
-    hover:bg-slate-800
-    md:hover:bg-transparent
+              hover:bg-slate-800
+              md:hover:bg-transparent
 
-    hover:text-red-400
-    transition-all
-    duration-300
-"
->
+              hover:text-red-400
+              transition-all
+              duration-300
+          "
+          >
             <GrContact />
             <a href="#contact" onClick={() => setIsOpen(false)} className="hover:text-red-400 transition">Contact</a>
           </li>

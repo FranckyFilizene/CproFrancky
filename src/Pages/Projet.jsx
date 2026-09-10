@@ -1,24 +1,24 @@
 import React from 'react'
-import { BsBootstrap, BsClaude, BsDatabase, BsOpenai } from 'react-icons/bs'
-import { FaHtml5, FaJs, FaLaravel, FaPhp, FaVuejs } from 'react-icons/fa'
-import { GrReactjs } from 'react-icons/gr'
-import { SiGooglegemini, SiPostman, SiTailwindcss } from 'react-icons/si'
-import ticketing from '../../src/assets/ticketing.png'
-import visiteur from '../../src/assets/visiter.png'
-import sout from '../../src/assets/soutenance.png'
-import boxia from '../../src/assets/box-ia.png'
-import { BsGithub } from 'react-icons/bs'
 import { motion } from 'framer-motion'
-import { FcNext } from 'react-icons/fc'
-import { GiGemini } from 'react-icons/gi'
-import { DiMysql } from 'react-icons/di'
-import { FaCss } from 'react-icons/fa6'
 import skills from "../data/skillsData.js";
-
 import CardProject from "../Components/CardProject/CardProject.jsx";
 import project from "../data/projectData.js";
+import { useState } from 'react';
 
 const Projet = () => {
+
+  const [activeFilter, setActiveFilter] = useState("tout");
+
+  const menu = [
+    { name: "tout", libelle: "Tout" },
+    { name: "gestion", libelle: "Gestion" },
+    { name: "landing", libelle: "Landing" },
+    { name: "logiciel", libelle: "Logiciel" },
+    { name: "portfolio", libelle: "Portfolios" }
+  ]
+
+  const filteredProject = activeFilter === "tout" ? project : project.filter(item => item.categorie === activeFilter);
+
   return (
     <div className='min-h-screen w-[95%] p-5 flex justify-center items-center flex-col'>
 
@@ -26,14 +26,34 @@ const Projet = () => {
       <div className="w-full">
 
         {/* Titre */}
-        <h2 className="text-3xl md:text-4xl font-bold text-slate-100 text-center mb-8">
-          Mes <span className="text-red-600">Projets</span>
-        </h2>
+        <div className='font-bold mb-4'>
+          <h2 className="text-4xl font-bold text-slate-100 font-mono tracking-wide">
+            Mes <span className="text-red-600">Projets</span>
+          </h2>
+
+          <p className='font-normal text-[14px]'>
+            Chaque projet, une solution et un apprentissage.
+          </p>
+        </div>
+
+        <div className='mb-4 flex items-center space-x-1 text-sm'>
+          {
+            menu.map((item) => (
+              <button
+                key={item.name}
+                onClick={() => setActiveFilter(item.name)}
+                className={`px-4 py-2 rounded-xl duration-300 text-[12px] md:text-sm ${activeFilter === item.name ? 'bg-red-600 shadow-lg' : 'bg-slate-700 hover:bg-slate-500'}`}
+              >
+                {item.libelle}
+              </button>
+            ))
+          }
+        </div>
 
         {/* Grille des projets */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
 
-          {project.map((project) => (
+          {filteredProject.map((project) => (
             <CardProject
               key={project.id}
               project={project}

@@ -3,6 +3,27 @@ import { BsGithub } from 'react-icons/bs'
 import { FaFacebook, FaWhatsapp } from 'react-icons/fa'
 import profil from '../../src/assets/porfil.webp'
 import { BiLocationPlus } from 'react-icons/bi'
+import { motion } from 'framer-motion'
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: {
+    opacity: 0,
+    x: -30,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+  },
+};
 
 const Home = () => {
   return (
@@ -21,25 +42,36 @@ const Home = () => {
         <div className="absolute inset-0 bg-red-900/10" />
       </div>
       <div className="relative z-10 gap-2 min-h-screen w-full md:w-[95%] max-w-7xl mx-auto px-4 md:px-10 flex items-center justify-center md:justify-between">
-        <div className="w-full md:w-[60%] p-6 md:p-8 rounded-3xl bg-black/30 md:bg-gray-900/90 backdrop-blur-md shadow-xl border border-gray-800">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="w-full md:w-[60%] p-6 md:p-8 rounded-3xl bg-black/30 md:bg-gray-900/90 backdrop-blur-md shadow-xl border border-gray-800">
 
-          <div className="text-center md:text-left space-y-4">
-            <h3 className="text-2xl sm:text-3xl md:text-4xl font-medium text-gray-200">
-              Bonjour, je suis
-              <span className="block text-red-500 font-bold text-4xl md:text-5xl">
+          <div className="text-center md:text-left space-y-2">
+            <motion.h3
+              variants={itemVariants} className="text-sm font-medium tracking-[0.2em] text-[#991414]">
+              BONJOUR, JE SUIS
+              <motion.span
+              variants={itemVariants}
+              className="block text-slate-200 font-bold text-4xl md:text-5xl">
                 Francky Michel
-              </span>
-            </h3>
+              </motion.span>
+            </motion.h3>
 
-            <p className="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed">
+            <motion.p 
+            variants={itemVariants}
+            className="text-base sm:text-lg tracking-tight md:text-md text-gray-300 leading-relaxed">
               Développeur Full-Stack Junior <br />
               créant des solutions web innovantes.
-            </p>
+            </motion.p>
           </div>
 
           {/* Boutons */}
           <div className="flex flex-col items-center md:items-start space-y-6 mt-8">
-            <div className="flex gap-4 flex-wrap justify-center md:justify-start">
+            <motion.div
+            variants={itemVariants}
+             className="flex gap-4 flex-wrap justify-center md:justify-start">
               <a
                 href="#projet"
                 className="bg-red-600 w-28 px-4 py-2.5 text-center rounded-lg font-semibold hover:bg-red-700 duration-300"
@@ -53,51 +85,53 @@ const Home = () => {
               >
                 Contact
               </a>
-            </div>
+            </motion.div>
 
             {/* Réseaux */}
-            <div className="flex gap-6 text-2xl">
+            <motion.div 
+            variants={itemVariants}
+            className="flex gap-6 text-2xl">
               <a
                 href="https://www.facebook.com/FranckyFilizene"
                 className="text-gray-300 hover:text-blue-500"
               >
-                <FaFacebook  size={18}/>
+                <FaFacebook size={18} />
               </a>
 
               <a
                 href="https://wa.me/+261385382860"
                 className="text-gray-300 hover:text-green-500"
               >
-                <FaWhatsapp size={18}/>
+                <FaWhatsapp size={18} />
               </a>
 
               <a
                 href="https://www.github.com/FranckyFilizene"
                 className="text-gray-300 hover:text-violet-500"
               >
-                <BsGithub size={18}/>
+                <BsGithub size={18} />
               </a>
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Image Desktop seulement */}
-        <div className="hidden md:flex w-[40%] justify-center">
-          <div className="bg-gradient-to-tr from-red-800 to-slate-900 p-8 rounded-3xl shadow-2xl relative">
-            <div className='absolute flex justify-center items-center gap-1 text-gray-500 font-extrabold top-2 right-4'>
-              <BiLocationPlus size={20}/> Toliara
-            </div>
-            <img
-              src={profil}
-              alt="Profil"
-              loading='lazy'
-              decoding='async'
-              className="w-[320px] object-cover"
-            />
+      {/* Image Desktop seulement */}
+      <div className="hidden md:flex w-[40%] justify-center">
+        <div className="bg-gradient-to-tr from-red-800 to-slate-900 p-8 rounded-3xl shadow-2xl relative">
+          <div className='absolute flex justify-center items-center gap-1 text-gray-500 font-extrabold top-2 right-4'>
+            <BiLocationPlus size={20} /> Toliara
           </div>
+          <img
+            src={profil}
+            alt="Profil"
+            loading='lazy'
+            decoding='async'
+            className="w-[320px] object-cover"
+          />
         </div>
       </div>
-    </section>
+    </div>
+    </section >
   )
 }
 

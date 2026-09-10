@@ -3,6 +3,8 @@ import soutenance from "../assets/soutenance.png";
 import ticketing from "../assets/ticketing.png";
 import visiter from "../assets/visiter.png";
 import pharmacie from "../assets/Pharmacie.png";
+import Izeflien from "../assets/izeflien.png";
+import RJAina from "../assets/ainapro.png";
 
 import {
     DiReact,
@@ -16,11 +18,13 @@ import {
 } from "react-icons/di";
 import { SiExpress, SiTailwindcss } from "react-icons/si";
 import { TbSchema } from "react-icons/tb";
+import { FaReact } from "react-icons/fa";
 
 const project = [
 
     {
         id: 1,
+        categorie: "gestion",
         type: "WebApp.2026",
         title: "Gestion de Soutenance",
         image: soutenance,
@@ -35,6 +39,7 @@ const project = [
     },
     {
         id: 2,
+        categorie: "landing",
         type: "WebApp.2026",
         title: "BoxIA",
         image: boxia,
@@ -49,7 +54,8 @@ const project = [
     },
     {
         id: 3,
-        type: "WebApp.2026",
+        type: "Logiciel.2026",
+        categorie: "logiciel",
         title: "Gestion de pharmacie",
         image: pharmacie,
         description: "Application desktop de gestion de pharmacie développée avec JavaFX et PostgreSQL, permettant de gérer les médicaments, les stocks et les achats.",
@@ -66,6 +72,7 @@ const project = [
     {
         id: 4,
         type: "WebAp2026",
+        categorie: "gestion",
         title: "M.visiteurs",
         image: visiter,
         description: "Application single page ReactJS pour enregistrer et suivre les visiteur .Interface rapide sans rechargement",
@@ -79,6 +86,7 @@ const project = [
     },
     {
         id: 5,
+        categorie: "landing",
         type: "WebApp.2026",
         title: "Ticketing",
         image: ticketing,
@@ -89,6 +97,36 @@ const project = [
         ],
         github: "",
         demo: ""
+    },
+    {
+        id: 6,
+        type: "WebApp.2026",
+        categorie: "portfolio",
+        title: "IzeflienDEV",
+        image: Izeflien,
+        description: "Site vitrine dévéloppé pour IzeflienDEV , une agence web. Présentation des services : portfolio, site vitrine, landing page. Avec section projets déja realisé",
+        technologies: [
+            { Icon: SiTailwindcss, Style: "text-sky-600" },
+            { Icon: FaReact, Style: "text-sky-600" },
+            { Icon: SiExpress, Style: "text-green-400" }
+        ],
+        github: "",
+        demo: ""
+    },
+    {
+        id: 7,
+        type: "WebApp.2026",
+        categorie :"portfolio",
+        title: "Portfolio RJAina",
+        image: RJAina,
+        description: "Site portfolio pour Aina RAJAONARY. Présentation de ses services, galerie et formulaire de contact.",
+        technologies: [
+            { Icon: SiTailwindcss, Style: "text-sky-600" },
+            { Icon: FaReact, Style: "text-sky-600" },
+            { Icon: SiExpress, Style: "text-green-400" }
+        ],
+        github: "",
+        demo: "https://ainaprofil.vercel.app/"
     },
 ]
 
