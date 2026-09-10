@@ -17,10 +17,10 @@ const Projet = () => {
     { name: "portfolio", libelle: "Portfolios" }
   ]
 
-  const filteredProject = activeFilter === "tout" ? project : project.filter(item => item.categorie === activeFilter);
+  const filteredProject = activeFilter === "tout" ? project : project.filter(item => item.categorie.trim() === activeFilter.trim());
 
   return (
-    <div className='min-h-screen w-[95%] p-5 flex justify-center items-center flex-col'>
+    <div className='min-h-screen w-[95%] p-4 flex justify-center items-center flex-col'>
 
 
       <div className="w-full">
@@ -42,7 +42,7 @@ const Projet = () => {
               <button
                 key={item.name}
                 onClick={() => setActiveFilter(item.name)}
-                className={`px-4 py-2 rounded-xl duration-300 text-[12px] md:text-sm ${activeFilter === item.name ? 'bg-red-600 shadow-lg' : 'bg-slate-700 hover:bg-slate-500'}`}
+                className={`px-3 py-2 rounded-xl duration-300 text-[12px] md:text-sm ${activeFilter === item.name ? 'bg-red-600 shadow-lg' : 'bg-slate-700 hover:bg-slate-500'}`}
               >
                 {item.libelle}
               </button>
