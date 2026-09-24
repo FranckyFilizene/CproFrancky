@@ -20,29 +20,27 @@ const Projet = () => {
   const filteredProject = activeFilter === "tout" ? project : project.filter(item => item.categorie.trim() === activeFilter.trim());
 
   return (
-    <div className='min-h-screen w-[95%] p-4 flex justify-center items-center flex-col'>
-
+    <div className='min-h-screen w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex justify-center items-center flex-col'>
 
       <div className="w-full">
 
-        {/* Titre */}
-        <div className='font-bold mb-4'>
-          <h2 className="text-4xl font-bold text-slate-100 font-mono tracking-wide">
+        <div className='font-bold mb-5'>
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-100 font-mono tracking-wide">
             Mes <span className="text-red-600">Projets</span>
           </h2>
 
-          <p className='font-normal text-[14px]'>
+          <p className='font-normal text-sm sm:text-[14px] mt-2'>
             Chaque projet, une solution et un apprentissage.
           </p>
         </div>
 
-        <div className='mb-4 flex items-center space-x-1 text-sm'>
+        <div className='mb-5 flex flex-wrap items-center gap-2 text-sm'>
           {
             menu.map((item) => (
               <button
                 key={item.name}
                 onClick={() => setActiveFilter(item.name)}
-                className={`px-3 py-2 rounded-xl duration-300 text-[12px] md:text-sm ${activeFilter === item.name ? 'bg-red-600 shadow-lg' : 'bg-slate-700 hover:bg-slate-500'}`}
+                className={`px-3 py-2 rounded-xl duration-300 text-[11px] sm:text-xs md:text-sm ${activeFilter === item.name ? 'bg-red-600 shadow-lg' : 'bg-slate-700 hover:bg-slate-500'}`}
               >
                 {item.libelle}
               </button>
@@ -50,16 +48,13 @@ const Projet = () => {
           }
         </div>
 
-        {/* Grille des projets */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
-
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 items-stretch">
           {filteredProject.map((project) => (
             <CardProject
               key={project.id}
               project={project}
             />
           ))}
-
         </div>
 
       </div>

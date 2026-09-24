@@ -7,24 +7,31 @@ import { FaBookOpen, FaExternalLinkAlt } from 'react-icons/fa'
 
 const Skills = () => {
   return (
-    <div className="min-h-screen w-[95%] p-5 flex justify-center items-center flex-col gap-4">
+    <div className="min-h-screen w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex justify-center items-center flex-col gap-4">
 
-      {/* Titre */}
       <motion.h1
         initial={{ opacity: 0, y: -30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.6 }}
-        className="text-3xl tracking-tighter font-bold"
+        className="text-2xl sm:text-3xl tracking-tighter font-bold text-center"
       >
         Soft Skills & Savoir-être
       </motion.h1>
 
+      <motion.p
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="text-sm sm:text-base text-slate-400 text-center max-w-2xl"
+      >
+        Je m’appuie sur des qualités humaines et professionnelles qui me permettent de mieux collaborer, m’adapter et livrer des solutions fiables.
+      </motion.p>
 
-      <div className="w-full md:flex justify-center items-center gap-2 space-y-2 md:space-y-0">
+      <div className="w-full flex flex-col lg:flex-row justify-center items-stretch gap-3 lg:gap-4">
 
-        {/* ================= COLONNE GAUCHE ================= */}
-        <div className="flex justify-center items-center w-full flex-col gap-2">
+        <div className="flex justify-center items-center w-full flex-col gap-3">
 
           {/* Autonomie */}
           <motion.div
@@ -97,8 +104,7 @@ const Skills = () => {
         </div>
 
 
-        {/* ================= COLONNE DROITE ================= */}
-        <div className="w-full flex justify-center items-center flex-col gap-2">
+        <div className="w-full flex justify-center items-center flex-col gap-3">
 
           {/* Esprit d'équipe */}
           <motion.div

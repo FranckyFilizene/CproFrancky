@@ -33,7 +33,7 @@ const Contact = () => {
     import.meta.env.VITE_API_URL,
     ...(import.meta.env.DEV
       ? ['http://localhost:5000']
-      : ['https://francky-porfolio-api.vercel.app', 'https://francky-portfolio-api.vercel.app'])
+      : ['https://francky-portfolio-api.vercel.app', 'https://francky-portfolio-api.vercel.app'])
   ].filter(Boolean);
 
   // Soumission du formulaire au backend
@@ -93,9 +93,8 @@ const Contact = () => {
 
   return (
 
-    <div className="min-h-screen w-[95%] p-5 flex justify-center items-center flex-col gap-6">
+    <div className="min-h-screen w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex justify-center items-center flex-col gap-6">
 
-      {/* Titre de la section */}
       <motion.h1
         initial={{ opacity: 0, y: -30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -109,11 +108,18 @@ const Contact = () => {
         Contact
       </motion.h1>
 
+      <motion.p
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="text-sm sm:text-base text-slate-400 text-center max-w-2xl"
+      >
+        Vous avez un projet, une opportunité ou simplement une question ? N’hésitez pas à me contacter, je serai ravi d’échanger avec vous.
+      </motion.p>
 
-      {/* Contenu Contact */}
-      <div className="w-full md:flex justify-center gap-3 space-y-2 md:space-y-0">
+      <div className="w-full flex flex-col lg:flex-row justify-center gap-4 lg:gap-3">
 
-        {/* Bloc gauche */}
         <motion.div
           initial={{ opacity: 0, x: -80 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -122,7 +128,7 @@ const Contact = () => {
             duration: 0.7,
             ease: "easeOut"
           }}
-          className="md:w-[35%] w-full h-96 bg-slate-950 p-5 flex flex-col justify-around rounded-lg shadow-lg relative overflow-hidden"
+          className="lg:w-[35%] w-full h-auto min-h-[22rem] bg-slate-950 p-5 flex flex-col justify-around rounded-lg shadow-lg relative overflow-hidden"
         >
 
           <div className="absolute -top-5 -left-5 w-40 h-40 rounded-[50%] bg-red-900/40 z-0 blur-xl"></div>
@@ -189,7 +195,7 @@ const Contact = () => {
             delay: 0.15,
             ease: "easeOut"
           }}
-          className="flex flex-col justify-center items-center space-y-2 md:w-[50%] w-full h-full bg-gray-950 rounded-lg p-2"
+          className="flex flex-col justify-center items-center space-y-2 lg:w-[50%] w-full h-full bg-gray-950 rounded-lg p-3 sm:p-4"
         >
 
           {/* Formulaire */}

@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { FaBars, FaHome, FaTimes } from 'react-icons/fa';
 import { GiSkills } from 'react-icons/gi';
 import { GrContact, GrProjects } from 'react-icons/gr';
-import logo from '../../../public/monlogo.png'
 
 function Navbar() {
 
@@ -18,7 +17,7 @@ function Navbar() {
       <div className="max-w-6xl mx-auto flex justify-between items-center">
         <h1 className="text-xl font-bold text-red-600 tracking-tighter flex justify-center items-center relative">
           <div className='w-5 h-5 bg-slate-400 absolute -right-2 -top-[0.2px] rounded-[50%]'></div>
-          <img src={logo} alt="" className='rounded-4xl' />
+          <img src="/monlogo.png" alt="Logo Francky" className='rounded-4xl' />
           <span className='text-white z-50'>Franck<span className='text-red-600'>y</span></span>
         </h1>
         <button

@@ -19,7 +19,7 @@ export default function AiAssistant() {
     import.meta.env.VITE_API_URL,
     ...(import.meta.env.DEV
       ? ['http://localhost:5000']
-      : ['https://francky-porfolio-api.vercel.app', 'https://francky-portfolio-api.vercel.app'])
+      : ['https://francky-portfolio-api.vercel.app', 'https://francky-portfolio-api.vercel.app'])
   ].filter(Boolean);
 
   const handleSendMessage = async (e) => {
