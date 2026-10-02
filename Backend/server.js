@@ -1,20 +1,20 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import { GoogleGenAI } from '@google/genai';
 import nodemailer from 'nodemailer';
 
 //on charge la variable d'environnement
-dotenv.config({ path: new URL('./.env', import.meta.url) });
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 //autorisation du frontend à accéder à du backend
 const allowedOrigins = [
-  'https://francky-rm.vercel.app',
+  process.env.FRONTEND_URL,
   'http://localhost:5173'
-];
+].filter(Boolean); // Filtrer les valeurs nulles ou indéfinies
 
 app.use(cors({
   origin: (origin, callback) => {
@@ -29,43 +29,124 @@ app.use(cors({
   credentials: true
 }));
 
-app.options('*', (req, res) => {
-  res.sendStatus(204);
-});
-
 app.use(express.json());
 
 // Initialiser le SDK Gemini avec la clé cachée
-const geminiApiKey = process.env.GOOGLE_API_KEY || process.env.GEMINI_API_KEY;
-const hasValidGeminiKey = typeof geminiApiKey === 'string' && geminiApiKey.startsWith('AIza');
-const genAI = hasValidGeminiKey ? new GoogleGenerativeAI({ apiKey: geminiApiKey }) : null;
+const geminiApiKey =
+  process.env.GOOGLE_API_KEY || process.env.GEMINI_API_KEY;
 
+const genAI = geminiApiKey
+  ? new GoogleGenAI({
+    apiKey: geminiApiKey
+  })
+  : null;
 //----Le secret de mon agent : mon context ----
 const SYSTEM_INSTRUCTION = `
-Tu es l'assistant IA officiel de Ranaivomanana Filizene Francky Michel.
+Tu es l'assistant IA officiel du portfolio de RANAIVOMANANA FILIZENE Francky Michel.
 
-Tu représentes son portfolio professionnel.
+Tu représentes son profil professionnel et tu aides les visiteurs, recruteurs et clients à découvrir son parcours, ses compétences, ses projets et ses possibilités de collaboration.
 
-Ton objectif est d'aider les recruteurs, clients et visiteurs à découvrir son profil.
+RÈGLES DE RÉPONSE :
+- Réponds uniquement aux questions concernant Francky, son profil professionnel, ses compétences, ses projets, sa formation ou ses possibilités de stage et de collaboration.
+- Réponds en français.
+- Adopte un ton professionnel, naturel, chaleureux et accessible.
+- Réponds de manière concise et claire, généralement en 3 à 6 phrases.
+- Tu peux utiliser des listes lorsque cela améliore la lisibilité.
+- Ne crée jamais de compétence, de projet, d'expérience, de diplôme ou d'information personnelle qui n'est pas indiquée dans ces instructions.
+- Si une information n'est pas disponible, indique simplement que cette information n'est pas renseignée sur le portfolio.
+- Pour les questions sans rapport avec le profil de Francky, explique poliment que tu es spécialisé dans la présentation de son profil professionnel.
 
-Tu réponds toujours :
-- de manière professionnelle ;
-- avec un ton courtois et chaleureux ;
-- avec des réponses courtes (3 à 6 phrases maximum) ;
-- uniquement à propos de Francky, de ses compétences, de ses projets, de son parcours et de ses coordonnées professionnelles.
+PROFIL :
+Nom : RANAIVOMANANA FILIZENE Francky Michel.
 
-Ses compétences principales :
-• Frontend : React, Vue.js, Tailwind CSS
-• Backend : PHP, Laravel, Node.js, Express.js
-• Base de données : MySQL, PostgreSQL
-• Outils : Git, GitHub, Vercel
+Formation :
+- Étudiant en 2ᵉ année à l'École Nationale d'Informatique (ENI).
+- Formation orientée vers la programmation, le développement web et logiciel, les bases de données et la conception d'applications.
 
-Ses principaux projets :
-- GearUp : plateforme e-commerce.
-- SPAVisiteur : application de gestion des visiteurs.
-- Portfolio personnel avec assistant IA intégré.
+COMPÉTENCES :
 
-Si une question est hors sujet (politique, médecine, cuisine, etc.), explique poliment que tu es exclusivement conçu pour présenter le profil professionnel de Francky.
+Frontend :
+- React
+- Vue.js
+- JavaScript
+- Tailwind CSS
+- HTML5
+- CSS3
+
+Backend :
+- PHP
+- Laravel
+- Java
+- Node.js
+- Express.js
+
+Bases de données :
+- MySQL
+- PostgreSQL
+
+Outils et environnement :
+- Git
+- GitHub
+- Vercel
+- Thunder Client
+- Visual Studio Code
+- IntelliJ IDEA
+- Scene Builder
+
+PROJETS :
+
+1. Gestion de Soutenance
+- Plateforme Full Stack destinée à digitaliser la gestion des soutenances.
+- Fonctionnalités : CRUD, planning automatique, tableau de bord statistique et export PDF.
+- Technologies principales : PHP, MySQL et CSS.
+
+2. BoxIA
+- Application d'intelligence artificielle conçue pour fournir des réponses aux utilisateurs.
+- Technologies principales : React, Tailwind CSS et Express.js.
+
+3. Gestion de pharmacie
+- Application desktop développée avec JavaFX et PostgreSQL.
+- Elle permet de gérer les médicaments, les stocks et les achats.
+- Technologies principales : Java, JavaFX, PostgreSQL et IntelliJ IDEA.
+
+4. M.visiteurs
+- Application Single Page ReactJS destinée à l'enregistrement et au suivi des visiteurs.
+- L'interface permet une utilisation rapide sans rechargement de page.
+- Technologies principales : React, Tailwind CSS et PHP.
+
+5. Ticketing
+- Plateforme interne de gestion de tickets développée avec Laravel.
+- Elle permet la création, le suivi et la clôture des tickets.
+- Elle prend en charge plusieurs rôles : administrateur, agent et client.
+- Technologies principales : Laravel et Tailwind CSS.
+
+6. IzeflienDEV
+- Site vitrine développé pour une agence web.
+- Il présente ses services, ses projets et son activité.
+- Technologies principales : React, Tailwind CSS et Express.js.
+
+7. Portfolio RJAina
+- Site portfolio développé pour Aina Rajaonary.
+- Il présente ses services, sa galerie et son formulaire de contact.
+- Technologies principales : React, Tailwind CSS et Express.js.
+
+PORTFOLIO PERSONNEL :
+- Francky possède également son propre portfolio professionnel.
+- Celui-ci présente son profil, ses compétences et ses projets.
+- Le portfolio intègre un assistant IA permettant aux visiteurs d'obtenir des informations sur son parcours et son travail.
+
+STAGE ET COLLABORATION :
+- Francky recherche des opportunités de stage académique de 2ᵉ année dans le domaine du développement informatique.
+- Il est également ouvert aux opportunités de collaboration et aux projets liés au développement web et logiciel.
+
+CONTACT :
+- Les visiteurs peuvent utiliser le formulaire de contact disponible sur le portfolio pour une demande de stage, une collaboration ou une opportunité professionnelle.
+
+IMPORTANT :
+- Lorsque l'utilisateur demande quels sont les projets de Francky, présente les projets réellement indiqués dans cette instruction.
+- Lorsque l'utilisateur demande ses compétences, base-toi uniquement sur la liste fournie ci-dessus.
+- Ne prétends pas que Francky maîtrise une technologie qui n'est pas mentionnée ici.
+- Ne donne pas d'informations personnelles sensibles ou non présentes dans ces instructions.
 `;
 
 app.get('/', (req, res) => {
@@ -106,21 +187,23 @@ app.post('/api/chat', async (req, res) => {
       normalizedMessage.includes('travail') ||
       normalizedMessage.includes('projet')
     ) {
-      return "Voici un aperçu de ses principales réalisations, illustrant sa capacité à concevoir et développer des applications répondant à des besoins concrets, aussi bien dans le domaine académique que professionnel.\n\n" +
+      return (
+        "Francky a réalisé plusieurs projets en développement web et logiciel, notamment :\n\n" +
 
-        "🛠️ Applications de Gestion & Systèmes Métier :\n" +
-        "• Gestion de soutenance : Application permettant d'organiser et de suivre les soutenances, avec la gestion des étudiants, des sujets, des encadreurs et des jurys.\n" +
-        "• SPAvisiteur : Application web CRUD dédiée à la gestion complète des visiteurs, incluant l'enregistrement, le suivi et la consultation des données.\n" +
-        "• Ticketing : Plateforme de gestion des tickets d'assistance intégrant l'authentification des utilisateurs, le suivi des demandes, les statuts et un tableau de bord interactif.\n" +
-        "• Gestion d'association étudiante : Solution de gestion des membres, des événements, des cotisations et des statistiques pour faciliter l'administration d'une association.\n\n" +
+        "• Gestion de Soutenance : plateforme Full Stack permettant de digitaliser les soutenances, avec CRUD, planning automatique, tableau de bord statistique et export PDF.\n" +
 
-        "🌐 Plateformes Web & Solutions Innovantes :\n" +
-        "• BOXIA : Plateforme web moderne intégrant un assistant conversationnel basé sur l'intelligence artificielle, développée avec React, Express.js, Tailwind CSS et une API IA.\n" +
-        "• GEARUP : Site e-commerce responsive conçu pour la vente d'équipements de voyage et de randonnée, mettant l'accent sur l'expérience utilisateur et un design moderne.\n\n" +
+        "• BoxIA : application d'intelligence artificielle développée avec React, Tailwind CSS et Express.js.\n" +
 
-        "🎨 Sites Vitrines & Développement sur mesure :\n" +
-        "• Portfolios professionnels : Conception de sites vitrines personnalisés, responsives et optimisés pour mettre en valeur le profil et les réalisations de développeurs.\n" +
-        "• Site web pour un club : Développement d'une plateforme permettant de gérer les activités, les actualités et les membres du club avec React, Express.js et MySQL."
+        "• Gestion de pharmacie : application desktop développée avec JavaFX et PostgreSQL pour gérer les médicaments, les stocks et les achats.\n" +
+
+        "• M.visiteurs : application Single Page ReactJS permettant d'enregistrer et de suivre les visiteurs sans rechargement de page.\n" +
+
+        "• Ticketing : plateforme interne développée avec Laravel permettant la création, le suivi et la clôture des tickets avec différents rôles.\n" +
+
+        "• IzeflienDEV : site vitrine développé pour une agence web afin de présenter ses services, ses projets et son activité.\n" +
+
+        "• Portfolio RJAina : site portfolio présentant les services, la galerie et le formulaire de contact de Aina Rajaonary."
+      );
     }
 
     // Compétences
@@ -133,10 +216,11 @@ app.post('/api/chat', async (req, res) => {
       normalizedMessage.includes('langage') ||
       normalizedMessage.includes('outil')
     ) {
-      return "Ses compétences techniques couvrent l'ensemble du cycle de développement d'applications web, lui permettant de concevoir des solutions complètes, performantes et évolutives.\n\n" +
-        "• Développement Frontend : Développement d'interfaces utilisateur modernes, responsives et interactives avec React, Vue.js, JavaScript (ES6+), Tailwind CSS, SCSS, HTML5 et CSS3, en privilégiant l'expérience utilisateur.\n" +
-        "• Développement Backend : Création d'API REST sécurisées, gestion de la logique applicative et intégration de services avec PHP, Node.js et Express.js.\n" +
-        "• Gestion de bases de données : Conception, modélisation et optimisation de bases de données relationnelles avec MySQL et PostgreSQL afin de garantir la fiabilité, la cohérence et les performances des données."
+      return "Francky possède des compétences dans plusieurs domaines du développement informatique.\n\n" +
+        "• Frontend : React, Vue.js, JavaScript, Tailwind CSS.\n" +
+        "• Backend : PHP, Java, Node.js et Express.js.\n" +
+        "• Bases de données : MySQL et PostgreSQL.\n" +
+        "• Outils : Git, GitHub, Vercel, Thunder Client, Visual Studio Code, IntelliJ IDEA et Scene Builder.";
     }
 
     // Formation
@@ -150,7 +234,8 @@ app.post('/api/chat', async (req, res) => {
       normalizedMessage.includes('eni') ||
       normalizedMessage.includes('parcours')
     ) {
-      return "Il poursuit actuellement ses études en 2ᵉ année à l'École Nationale d'Informatique (ENI), où il renforce ses compétences en développement logiciel, en conception d'applications web, en architecture logicielle et en gestion de bases de données. Cette formation lui permet d'acquérir une solide maîtrise des technologies modernes et des bonnes pratiques du développement informatique.";
+      return "Francky est actuellement étudiant en 2ᵉ année à l'École Nationale d'Informatique (ENI). " +
+        "Sa formation lui permet de développer ses compétences en programmation, développement web et logiciel, bases de données et conception d'applications.";
     }
 
     // Contact / Embauche / Stage
@@ -178,35 +263,29 @@ app.post('/api/chat', async (req, res) => {
     return "Bonjour et bienvenue sur ce portfolio ! Je suis l'assistant virtuel de Francky. Je peux vous renseigner sur son parcours, ses projets, ses compétences techniques, sa formation à l'École Nationale d'Informatique (ENI), ainsi que sur ses disponibilités pour un stage, une collaboration ou une opportunité de recrutement.\n\nJe suis spécialisé dans les informations liées à ce portfolio. Si votre question porte sur un autre sujet, comme une recette de cuisine, l'actualité ou des conseils généraux, je vous inviterai à revenir à des questions concernant son profil. Comment puis-je vous aider ?";
   };
 
-  if (!hasValidGeminiKey) {
+  if (!genAI) {
     return res.json({ reply: getFallbackReply() });
   }
 
   try {
-    const modelsToTry = ['gemini-2.0-flash', 'gemini-2.0-flash-lite'];
-    let lastError = null;
-
-    for (const modelName of modelsToTry) {
-      try {
-        const model = genAI.getGenerativeModel({
-          model: modelName,
-          systemInstruction: SYSTEM_INSTRUCTION
-        });
-
-        const result = await model.generateContent(message);
-        const response = await result.response;
-
-        return res.json({ reply: response.text() });
-      } catch (error) {
-        lastError = error;
-        console.error(`Erreur avec ${modelName}:`, error);
+    const response = await genAI.models.generateContent({
+      model: 'gemini-3.5-flash',
+      contents: message,
+      config: {
+        systemInstruction: SYSTEM_INSTRUCTION
       }
-    }
+    });
 
-    throw lastError || new Error('Aucun modèle Gemini n’a pu répondre.');
+    return res.json({
+      reply: response.text
+    });
+
   } catch (error) {
     console.error('Erreur Gemini API:', error);
-    return res.json({ reply: getFallbackReply() });
+
+    return res.json({
+      reply: getFallbackReply()
+    });
   }
 });
 
