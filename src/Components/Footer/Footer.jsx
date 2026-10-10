@@ -15,8 +15,8 @@ const Footer = () => {
                     <div className="flex flex-col gap-3">
 
                         <h1 className="text-2xl font-bold tracking-tighter">
-                            <span className="text-white">rm.</span>
-                            <span className="text-red-600">Francky</span>
+                            <span className="text-red-600">R</span>
+                            <span className="text-slate-50">M Franck<span className='text-red-600'>y</span></span>
                         </h1>
 
                         <p className="text-xs leading-relaxed max-w-xs">
@@ -152,17 +152,19 @@ const Footer = () => {
 
 
                 {/* ================= BAS DU FOOTER ================= */}
-                <div className="flex flex-col md:flex-row justify-between items-center gap-3 text-[10px]">
+                <div className="flex flex-col md:flex-row justify-center items-center md:gap-10 gap-5 text-[10px]">
 
                     <p>
-                        © 2025–2026 <span className="text-white">Francky RM</span>.
+                        © 2025–2026 <span className="text-white">RANAIVOMANANA FILIZENE Francky Michel</span>.
                         Tous droits réservés.
                     </p>
 
                     <p className="text-slate-600">
                         Designed & Developed by
-                        <span className="text-red-600 ml-1">
-                            Francky RM
+                        <span className="text-slate-200 ml-1">
+                           <a href="https://www.facebook.com/FranckyFilizene" className="hover:text-red-500 transition-colors duration-300">
+                                Francky RM
+                           </a>
                         </span>
                     </p>
 
