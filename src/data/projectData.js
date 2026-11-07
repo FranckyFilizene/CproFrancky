@@ -1,9 +1,9 @@
 import boxia from "../assets/box-ia.png";
 import soutenance from "../assets/soutenance.png";
-import ticketing from "../assets/ticketing.png";
+
 import visiter from "../assets/visiter.png";
 import pharmacie from "../assets/Pharmacie.png";
-import Izeflien from "../assets/izeflien.png";
+import Hopeness from "../assets/Hopeness.png";
 import RJAina from "../assets/ainapro.png";
 
 import {
@@ -86,35 +86,21 @@ const project = [
     },
     {
         id: 5,
+        type: "WebApp.2026",
         categorie: "landing",
-        type: "WebApp.2026",
-        title: "Ticketing",
-        image: ticketing,
-        description: "Plateforme d'assitant interne en laravel. Création,suivi et cloture de tickets avec roles admin,agent,client",
-        technologies: [
-            { Icon: SiTailwindcss, Style: "text-sky-600" },
-            { Icon: DiLaravel, Style: "text-red-600" }
-        ],
-        github: "",
-        demo: ""
-    },
-    {
-        id: 6,
-        type: "WebApp.2026",
-        categorie: "portfolio",
-        title: "IzeflienDEV",
-        image: Izeflien,
-        description: "Site vitrine dévéloppé pour IzeflienDEV , une agence web. Présentation des services : portfolio, site vitrine, landing page. Avec section projets déja realisé",
+        title: "CFP HOPENESS",
+        image: Hopeness,
+        description: "Plateforme web moderne et responsive conçue pour un centre de formation professionnelle (Mécanique, Langues, IT) et son atelier de confection textile sur mesure. Le site intègre un assistant IA personnalisé pour orienter les visiteurs et faciliter les demandes de devis et de contact.",
         technologies: [
             { Icon: SiTailwindcss, Style: "text-sky-600" },
             { Icon: FaReact, Style: "text-sky-600" },
             { Icon: SiExpress, Style: "text-green-400" }
         ],
-        github: "",
-        demo: ""
+        github: "https://github.com/FranckyFilizene/Hopeness.git",
+        demo: "https://hopeness.vercel.app/"
     },
     {
-        id: 7,
+        id: 6,
         type: "WebApp.2026",
         categorie :"portfolio",
         title: "Portfolio RJAina",
