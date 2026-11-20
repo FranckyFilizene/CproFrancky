@@ -1,13 +1,18 @@
+
 import React, { useState, useRef, useEffect } from 'react';
+import { IoChatbubbleEllipses, IoSend } from 'react-icons/io5';
 
 export default function AiAssistant() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { sender: 'ai', text: 'Bonjour ! Je suis l\'assistant virtuel de Francky. Posez-moi vos questions sur ses projets ou ses compétences !' }
+    {
+      sender: 'ai',
+      text: "Bonjour ! Je suis l'assistant virtuel de Francky. Posez-moi vos questions sur ses projets ou ses compétences !"
+    }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  
+
   const chatEndRef = useRef(null);
 
   // Auto-scroll vers le bas à chaque nouveau message
@@ -24,12 +29,18 @@ export default function AiAssistant() {
 
   const handleSendMessage = async (e) => {
     e.preventDefault();
+
     if (!input.trim() || isLoading) return;
 
     const userMessage = input.trim();
     setInput('');
-    // 1. Ajouter le message de l'utilisateur à l'écran
-    setMessages((prev) => [...prev, { sender: 'user', text: userMessage }]);
+
+    // Ajouter le message de l'utilisateur
+    setMessages((prev) => [
+      ...prev,
+      { sender: 'user', text: userMessage }
+    ]);
+
     setIsLoading(true);
 
     try {
@@ -46,114 +57,191 @@ export default function AiAssistant() {
           const data = await response.json();
 
           if (data.reply) {
-            setMessages((prev) => [...prev, { sender: 'ai', text: data.reply }]);
+            setMessages((prev) => [
+              ...prev,
+              { sender: 'ai', text: data.reply }
+            ]);
             return;
           }
 
-          lastError = new Error(data.error || 'Oups, je rencontre un petit problème technique.');
+          lastError = new Error(
+            data.error || 'Oups, je rencontre un petit problème technique.'
+          );
         } catch (error) {
           lastError = error;
         }
       }
 
-      setMessages((prev) => [...prev, { sender: 'ai', text: lastError?.message || 'Impossible de joindre mon serveur pour le moment.' }]);
+      setMessages((prev) => [
+        ...prev,
+        {
+          sender: 'ai',
+          text: lastError?.message || 'Impossible de joindre mon serveur pour le moment.'
+        }
+      ]);
+
     } catch (error) {
       console.error(error);
-      setMessages((prev) => [...prev, { sender: 'ai', text: error.message || 'Impossible de joindre mon serveur pour le moment.' }]);
+
+      setMessages((prev) => [
+        ...prev,
+        {
+          sender: 'ai',
+          text: error.message || 'Impossible de joindre mon serveur pour le moment.'
+        }
+      ]);
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className="fixed bottom-4 right-4 z-50 font-sans text-slate-200 sm:bottom-6 sm:right-6">
-      {/* --- BULLE FLOTTANTE (BOUTON OUVERTURE) --- */}
+    <div className="fixed bottom-5 right-5 z-50 font-sans text-slate-100 sm:bottom-7 sm:right-7">
+
+      {/* BOUTON FLOTTANT */}
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="flex h-14 w-14 items-center justify-center rounded-full bg-red-600 text-white shadow-lg shadow-red-500/30 transition-all duration-300 hover:scale-110 hover:bg-red-500 active:scale-95 sm:h-14 sm:w-14"
+          aria-label="Ouvrir l'assistant IA"
+          className="group flex h-16 w-16 items-center justify-center rounded-full border border-red-400/20 bg-gradient-to-br from-red-500 via-red-600 to-red-800 text-white shadow-[0_8px_35px_rgba(220,38,38,0.35)] transition-all duration-300 hover:scale-110 hover:shadow-[0_12px_45px_rgba(220,38,38,0.5)] active:scale-95 sm:h-16 sm:w-16"
         >
-          {/* Icône de Chat (SVG) */}
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-6 w-6">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a.598.598 0 0 1-.655-.075.598.598 0 0 1-.154-.6a5.85 5.85 0 0 0 .858-2.814C4.07 16.14 3 14.18 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z" />
-          </svg>
+          <IoChatbubbleEllipses className="h-8 w-8 transition-transform duration-300 group-hover:scale-110" />
         </button>
       )}
 
-      {/* --- FENÊTRE DE DISCUSSION --- */}
+      {/* FENÊTRE DE DISCUSSION */}
       {isOpen && (
-        <div className="flex h-[78vh] w-[calc(100vw-1.5rem)] max-w-[24rem] flex-col rounded-2xl border border-zinc-800 bg-zinc-950 shadow-2xl shadow-black/50 sm:h-125 sm:w-100">
-          
-          {/* Header */}
-          <div className="flex items-center justify-between rounded-t-2xl border-b border-zinc-800 bg-zinc-900/50 px-4 py-3">
+        <div className="flex h-[78vh] w-[calc(100vw-2rem)] max-w-[25rem] flex-col overflow-hidden rounded-3xl border border-white/[0.08] bg-[#09090b] shadow-[0_25px_100px_rgba(0,0,0,0.65)] ring-1 ring-white/[0.03] sm:h-[520px] sm:w-[400px]">
+
+          {/* HEADER */}
+          <div className="flex items-center justify-between border-b border-white/[0.06] bg-gradient-to-r from-zinc-900 via-zinc-900 to-zinc-950 px-5 py-4">
+
             <div className="flex items-center gap-3">
-              <div className="relative h-3 w-3 rounded-full bg-emerald-500">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+
+              <div className="relative flex h-10 w-10 items-center justify-center rounded-xl border border-red-500/20 bg-red-500/10">
+                <span className="absolute left-0 top-0 h-full w-full rounded-xl bg-red-500/10"></span>
+
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.8}
+                  stroke="currentColor"
+                  className="relative h-5 w-5 text-red-400"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M9 3.75h6A2.25 2.25 0 0 1 17.25 6v12A2.25 2.25 0 0 1 15 20.25H9A2.25 2.25 0 0 1 6.75 18V6A2.25 2.25 0 0 1 9 3.75Z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M10 7.5h4m-4 3h4m-4 3h2"
+                  />
+                </svg>
               </div>
-              <div>
-                <h3 className="text-sm font-semibold tracking-wide">Assistant IA</h3>
-                <p className="text-xs text-zinc-400">En ligne • Infos sur Francky</p>
+
+              <div className="space-y-0.5">
+                <h3 className="text-sm font-semibold tracking-wide text-white">
+                  Assistant IA
+                </h3>
+
+                <p className="flex items-center gap-1.5 text-xs text-zinc-400">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.6)]"></span>
+                  En ligne · Infos sur Francky
+                </p>
               </div>
             </div>
-            <button 
+
+            <button
               onClick={() => setIsOpen(false)}
-              className="text-zinc-400 hover:text-zinc-200 transition-colors"
+              aria-label="Fermer l'assistant"
+              className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/[0.05] bg-white/[0.03] text-zinc-400 transition-all duration-200 hover:border-white/10 hover:bg-white/[0.08] hover:text-white active:scale-95"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-5 w-5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={2}
+                stroke="currentColor"
+                className="h-4 w-4"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18 18 6M6 6l12 12"
+                />
               </svg>
             </button>
+
           </div>
 
-          {/* Zone des messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-zinc-800">
+          {/* ZONE DES MESSAGES */}
+          <div className="flex-1 space-y-5 overflow-y-auto bg-[#09090b] px-4 py-5 scrollbar-thin scrollbar-thumb-zinc-800 scrollbar-track-transparent">
+
             {messages.map((msg, index) => (
-              <div 
-                key={index} 
-                className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+              <div
+                key={index}
+                className={`flex ${
+                  msg.sender === 'user' ? 'justify-end' : 'justify-start'
+                }`}
               >
-                <div className={`max-w-[85%] rounded-2xl px-3 py-2 text-sm leading-relaxed shadow-md sm:max-w-[80%] sm:px-4 sm:py-2.5
-                  ${msg.sender === 'user' 
-                    ? 'bg-red-700 text-white rounded-tr-none' 
-                    : 'bg-zinc-900 text-zinc-300 border border-zinc-800/60 rounded-tl-none'}`}
+                <div
+                  className={`max-w-[88%] rounded-2xl px-4 py-3 text-[13px] leading-6 shadow-lg sm:max-w-[82%]
+                    ${
+                      msg.sender === 'user'
+                        ? 'rounded-br-md border border-red-500/20 bg-gradient-to-br from-red-600 to-red-700 text-white shadow-red-950/20'
+                        : 'rounded-bl-md border border-white/[0.06] bg-zinc-900/80 text-zinc-300 shadow-black/10'
+                    }`}
                 >
                   {msg.text}
                 </div>
               </div>
             ))}
-            
-            {/* Animation de chargement (Bulle de pensée) */}
+
+            {/* ANIMATION DE CHARGEMENT */}
             {isLoading && (
               <div className="flex justify-start">
-                <div className="bg-zinc-900 border border-zinc-800/60 rounded-2xl rounded-tl-none px-4 py-3 shadow-md flex items-center gap-1">
-                  <span className="h-2 w-2 animate-bounce rounded-full bg-zinc-500 [animation-delay:-0.3s]"></span>
-                  <span className="h-2 w-2 animate-bounce rounded-full bg-zinc-500 [animation-delay:-0.15s]"></span>
-                  <span className="h-2 w-2 animate-bounce rounded-full bg-zinc-500"></span>
+                <div className="flex items-center gap-1.5 rounded-2xl rounded-bl-md border border-white/[0.06] bg-zinc-900/80 px-4 py-3.5 shadow-lg">
+
+                  <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-red-400 [animation-delay:-0.3s]"></span>
+
+                  <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-red-400 [animation-delay:-0.15s]"></span>
+
+                  <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-red-400"></span>
+
                 </div>
               </div>
             )}
+
             <div ref={chatEndRef} />
           </div>
 
-          {/* Formulaire d'envoi */}
-          <form onSubmit={handleSendMessage} className="p-4 border-t border-zinc-800 bg-zinc-900/20">
+          {/* FORMULAIRE D'ENVOI */}
+          <form
+            onSubmit={handleSendMessage}
+            className="border-t border-white/[0.06] bg-zinc-950 px-4 py-4"
+          >
             <div className="relative flex items-center">
+
               <input
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Posez une question..."
-                className="w-full rounded-xl border border-zinc-800 bg-zinc-900/60 py-2.5 pl-4 pr-12 text-base text-zinc-200 placeholder-zinc-500 focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500 sm:text-sm"
+                className="w-full rounded-xl border border-white/[0.08] bg-zinc-900/80 py-3 pl-4 pr-12 text-sm text-zinc-200 placeholder-zinc-500 outline-none transition-all duration-200 focus:border-red-500/50 focus:bg-zinc-900 focus:ring-2 focus:ring-red-500/10"
               />
+
               <button
                 type="submit"
                 disabled={isLoading || !input.trim()}
-                className="absolute right-2.5 rounded-lg bg-red-600 p-1.5 text-white transition-all hover:bg-red-500 disabled:opacity-40 disabled:hover:bg-red-600"
+                aria-label="Envoyer le message"
+                className="absolute right-2 flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-red-500 to-red-700 text-white shadow-md shadow-red-900/20 transition-all duration-200 hover:from-red-400 hover:to-red-600 active:scale-95 disabled:cursor-not-allowed disabled:opacity-30 disabled:shadow-none"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-4 w-4">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 12 0.375 0.375M21 12H3m18 0-6.75 6.75M21 12l-6.75-6.75" />
-                </svg>
+                <IoSend className="h-4 w-4" />
               </button>
+
             </div>
           </form>
 
