@@ -1,153 +1,134 @@
-import React from 'react';
-import { useState } from 'react';
-import { FaBars, FaHome, FaTimes } from 'react-icons/fa';
-import { GiSkills } from 'react-icons/gi';
-import { GrContact, GrProjects } from 'react-icons/gr';
+
+import React, { useState } from 'react';
+import { FaBars, FaTimes } from 'react-icons/fa';
 
 function Navbar() {
-
   const [isOpen, setIsOpen] = useState(false);
 
-  const toogleMenu = () => {
+  const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
+  const navLinks = [
+    { name: 'Accueil', href: '#home' },
+    { name: 'Projets', href: '#projet' },
+    { name: 'Skills', href: '#skills' },
+    { name: 'Contact', href: '#contact' },
+  ];
+
   return (
-    <nav className="fixed top-0 left-0 w-full bg-slate-800/80 backdrop-blur-md z-50 p-4">
-      <div className="max-w-6xl mx-auto flex justify-between items-center">
-        <h1 className="text-xl font-bold text-red-600 tracking-tighter flex justify-center items-center relative">
-          <div className='w-5 h-5 bg-slate-400 absolute -right-2 -top-[0.2px] rounded-[50%]'></div>
-          <img src="/monlogo.png" alt="Logo Francky" className='rounded-4xl w-12' />
-          <span className='text-white z-50'>Franck<span className='text-red-600'>y</span></span>
-        </h1>
-        <button
-          onClick={toogleMenu}
-          className='md:hidden text-slate-100 focus:outline-none z-50'
-          aria-label='toggle menu'>
-          {isOpen ? <FaTimes size={25} /> : <FaBars size={25} />}
-        </button>
-        <ul
-          className={`
-            flex transition-all duration-300 ease-in-out
+    <nav className="fixed top-0 left-0 z-50 w-full border-b border-white/[0.06] bg-slate-900/90 backdrop-blur-xl">
 
-            absolute md:static
-            top-16 right-0
-            h-screen md:h-auto
-            w-72 md:w-auto
+      <div className="mx-auto flex h-[76px] max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-12">
 
-            bg-slate-900 md:bg-transparent
-
-            flex-col md:flex-row
-
-            pt-8 md:pt-0
-            px-5 md:px-0
-
-            gap-3 md:gap-2
-
-            shadow-2xl md:shadow-none
-            border-l border-slate-700 md:border-none
-
-            ${isOpen ? "translate-x-0" : "translate-x-full md:translate-x-0"}
-          `}
+        {/* LOGO */}
+        <a
+          href="#home"
+          onClick={() => setIsOpen(false)}
+          className="group relative flex items-center gap-1.5"
         >
-          <li
-            className="
-                flex items-center
+          <div className="relative flex items-center">
 
-                gap-4 md:gap-2
+            <div className="absolute -right-1.5 -top-1 h-3.5 w-3.5 rounded-full bg-slate-400"></div>
 
-                px-4 py-3
-                md:px-3 md:py-2
+            <img
+              src="/monlogo.webp"
+              alt="Logo Francky"
+              className="relative z-10 h-10 w-10 rounded-full object-cover ring-1 ring-white/10 transition-transform duration-300 group-hover:scale-105"
+            />
 
-                rounded-xl md:rounded-lg
+          </div>
 
-                w-full md:w-auto
+          <span className="relative z-10 text-xl font-bold tracking-tight text-white">
+            Franck<span className="text-red-500">y</span>
+          </span>
+        </a>
 
-                hover:bg-slate-800
-                md:hover:bg-transparent
+        {/* NAVIGATION DESKTOP */}
+        <div className="hidden items-center gap-2 md:flex">
 
-                hover:text-red-400
-                transition-all
-                duration-300
-            "
-          >
-            <FaHome size={20} />
-            <a href="#home" onClick={() => setIsOpen(false)} className="hover:text-red-400 transition">Acceuil</a>
-          </li>
-          <li
-            className="
-                  flex items-center
-
-                  gap-4 md:gap-2
-
-                  px-4 py-3
-                  md:px-3 md:py-2
-
-                  rounded-xl md:rounded-lg
-
-                  w-full md:w-auto
-
-                  hover:bg-slate-800
-                  md:hover:bg-transparent
-
-                  hover:text-red-400
-                  transition-all
-                  duration-300
-              "
+          {navLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              className="group relative px-4 py-2.5 text-[14px] font-medium text-slate-300 transition-colors duration-300 hover:text-white"
             >
-            <GrProjects />
-            <a href="#projet" onClick={() => setIsOpen(false)} className="hover:text-red-400 transition">Projets</a>
-          </li>
-          <li
-            className="
-              flex items-center
+              {link.name}
 
-              gap-4 md:gap-2
+              <span className="absolute bottom-0 left-4 right-4 h-[2px] origin-left scale-x-0 rounded-full bg-red-500 transition-transform duration-300 group-hover:scale-x-100"></span>
+            </a>
+          ))}
 
-              px-4 py-3
-              md:px-3 md:py-2
-
-              rounded-xl md:rounded-lg
-
-              w-full md:w-auto
-
-              hover:bg-slate-800
-              md:hover:bg-transparent
-
-              hover:text-red-400
-              transition-all
-              duration-300
-          "
+          {/* BOUTON CONTACT */}
+          <a
+            href="#contact"
+            className="ml-4 rounded-xl bg-red-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-red-600/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-red-500 hover:shadow-red-500/30 active:scale-95"
           >
-            <GiSkills />
-            <a href="#skills" onClick={() => setIsOpen(false)} className="hover:text-red-400 transition">Skills</a>
-          </li>
-          <li
-            className="
-              flex items-center
+            Discutons
+          </a>
 
-              gap-4 md:gap-2
+        </div>
 
-              px-4 py-3
-              md:px-3 md:py-2
+        {/* BOUTON MENU MOBILE */}
+        <button
+          onClick={toggleMenu}
+          aria-label={isOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+          aria-expanded={isOpen}
+          className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-white transition-all duration-300 hover:border-red-500/40 hover:bg-red-500/10 md:hidden"
+        >
+          {isOpen ? (
+            <FaTimes size={19} />
+          ) : (
+            <FaBars size={19} />
+          )}
+        </button>
 
-              rounded-xl md:rounded-lg
-
-              w-full md:w-auto
-
-              hover:bg-slate-800
-              md:hover:bg-transparent
-
-              hover:text-red-400
-              transition-all
-              duration-300
-          "
-          >
-            <GrContact />
-            <a href="#contact" onClick={() => setIsOpen(false)} className="hover:text-red-400 transition">Contact</a>
-          </li>
-        </ul>
       </div>
+
+      {/* NAVIGATION MOBILE */}
+      <div
+        className={`grid overflow-hidden border-t border-white/[0.06] bg-slate-900/95 transition-all duration-300 ease-in-out md:hidden ${
+          isOpen
+            ? 'grid-rows-[1fr] opacity-100'
+            : 'grid-rows-[0fr] opacity-0'
+        }`}
+      >
+        <div className="overflow-hidden">
+
+          <div className="mx-auto max-w-7xl space-y-1 px-5 py-4 sm:px-8">
+
+            {navLinks.map((link, index) => (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={() => setIsOpen(false)}
+                style={{ transitionDelay: isOpen ? `${index * 50}ms` : '0ms' }}
+                className={`flex items-center justify-between rounded-xl px-4 py-3.5 text-sm font-medium transition-all duration-300 ${
+                  isOpen
+                    ? 'translate-x-0 opacity-100'
+                    : '-translate-x-3 opacity-0'
+                } text-slate-300 hover:bg-white/[0.05] hover:text-red-400`}
+              >
+                {link.name}
+
+                <span className="h-1.5 w-1.5 rounded-full bg-red-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
+              </a>
+            ))}
+
+            {/* CONTACT MOBILE */}
+            <a
+              href="#contact"
+              onClick={() => setIsOpen(false)}
+              className="mt-3 flex items-center justify-center rounded-xl bg-red-600 px-4 py-3.5 text-sm font-semibold text-white shadow-lg shadow-red-600/20 transition-all duration-300 hover:bg-red-500 active:scale-[0.98]"
+            >
+              Discutons de votre projet
+            </a>
+
+          </div>
+
+        </div>
+      </div>
+
     </nav>
   );
 }

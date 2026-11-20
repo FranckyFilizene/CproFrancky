@@ -1,98 +1,89 @@
-import React from 'react'
-import { BiPhone } from 'react-icons/bi'
-import { BsGithub } from 'react-icons/bs'
-import { CiLocationOn } from 'react-icons/ci'
-import { FaFacebook ,FaWhatsapp} from 'react-icons/fa'
-import { MdEmail } from 'react-icons/md'
+
+import React from 'react';
+import { BsGithub } from 'react-icons/bs';
+import { FaFacebook, FaWhatsapp } from 'react-icons/fa';
+import { MdEmail } from 'react-icons/md';
+
 const Footer = () => {
     return (
-        <footer className="w-full bg-slate-950 text-slate-400 border-t border-slate-800">
+        <footer className="w-full border-t border-white/[0.06] bg-slate-950 text-slate-400">
 
-            <div className="w-[95%] mx-auto py-10">
+            <div className="mx-auto w-[90%] max-w-7xl py-10">
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+                {/* FOOTER PRINCIPAL */}
+                <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
 
-                    <div className="flex flex-col gap-3">
+                    {/* IDENTITÉ */}
+                    <div className="flex flex-col items-center gap-3 md:items-start">
 
-                        <h1 className="text-2xl font-bold tracking-tighter">
-                            <span className="text-red-600">R</span>
-                            <span className="text-slate-50">M Franck<span className='text-red-600'>y</span></span>
-                        </h1>
+                        <h2 className="text-xl font-bold tracking-tight text-white">
+                            RM Franck<span className="text-red-500">y</span>
+                        </h2>
 
-                        <p className="text-xs leading-relaxed max-w-xs">
-                            Développeur passionné par la création d'applications modernes,
-                            performantes et adaptées aux besoins réels.
+                        <p className="max-w-xs text-center text-xs leading-relaxed text-slate-500 md:text-left">
+                            Développeur passionné par la création de solutions
+                            modernes et innovantes.
                         </p>
 
-                        {/* Réseaux sociaux */}
-                        <div className="flex items-center gap-5 mt-2">
+                        {/* RÉSEAUX SOCIAUX */}
+                        <div className="mt-1 flex items-center gap-3">
 
                             <a
                                 href="https://www.facebook.com/FranckyFilizene"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="hover:text-blue-500 transition-colors duration-300"
+                                aria-label="Facebook"
+                                className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/[0.06] bg-white/[0.03] text-slate-400 transition-all duration-300 hover:border-blue-500/30 hover:bg-blue-500/10 hover:text-blue-500"
                             >
-                                <FaFacebook size={18} />
+                                <FaFacebook size={16} />
                             </a>
 
                             <a
-                                href="https://wa.me/+261385382860"
+                                href="https://wa.me/261385382860"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="hover:text-green-500 transition-colors duration-300"
+                                aria-label="WhatsApp"
+                                className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/[0.06] bg-white/[0.03] text-slate-400 transition-all duration-300 hover:border-green-500/30 hover:bg-green-500/10 hover:text-green-500"
                             >
-                                <FaWhatsapp size={18} />
+                                <FaWhatsapp size={17} />
                             </a>
 
                             <a
-                                href="https://www.github.com/FranckyFilizene"
+                                href="https://github.com/FranckyFilizene"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="hover:text-white transition-colors duration-300"
+                                aria-label="GitHub"
+                                className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/[0.06] bg-white/[0.03] text-slate-400 transition-all duration-300 hover:border-white/20 hover:bg-white/10 hover:text-white"
                             >
-                                <BsGithub size={18} />
+                                <BsGithub size={16} />
                             </a>
 
                         </div>
 
                     </div>
 
+                    {/* NAVIGATION */}
+                    <div className="flex flex-col items-center gap-4">
 
-                    {/* ================= NAVIGATION ================= */}
-                    <div className="flex flex-col gap-3">
-
-                        <h2 className="text-lg text-white font-semibold">
+                        <h3 className="text-sm font-semibold text-white">
                             Navigation
-                        </h2>
+                        </h3>
 
-                        <div className="flex flex-col gap-2 text-xs">
+                        <div className="flex flex-wrap justify-center gap-5 text-xs sm:gap-7">
 
-                            <a
-                                href="#home"
-                                className="hover:text-red-500 transition-colors duration-300"
-                            >
+                            <a href="#home" className="transition-colors duration-300 hover:text-red-500">
                                 Accueil
                             </a>
 
-                            <a
-                                href="#skills"
-                                className="hover:text-red-500 transition-colors duration-300"
-                            >
-                                Compétences
+                            <a href="#skills" className="transition-colors duration-300 hover:text-red-500">
+                                Skills
                             </a>
 
-                            <a
-                                href="#projet"
-                                className="hover:text-red-500 transition-colors duration-300"
-                            >
+                            <a href="#projet" className="transition-colors duration-300 hover:text-red-500">
                                 Projets
                             </a>
 
-                            <a
-                                href="#contact"
-                                className="hover:text-red-500 transition-colors duration-300"
-                            >
+                            <a href="#contact" className="transition-colors duration-300 hover:text-red-500">
                                 Contact
                             </a>
 
@@ -100,71 +91,41 @@ const Footer = () => {
 
                     </div>
 
+                    {/* CONTACT */}
+                    <div className="flex flex-col items-center gap-3 md:items-start">
 
-                    {/* ================= CONTACT ================= */}
-                    <div className="flex flex-col gap-3">
+                        <h3 className="text-sm font-semibold text-white">
+                            Me contacter
+                        </h3>
 
-                        <h2 className="text-lg text-white font-semibold">
-                            Contact
-                        </h2>
+                        <a
+                            href="mailto:ranaivomananafrancky@gmail.com"
+                            className="flex items-center gap-2 text-xs transition-colors duration-300 hover:text-red-500"
+                        >
+                            <MdEmail size={16} className="text-red-500" />
+                            ranaivomananafrancky@gmail.com
+                        </a>
 
-                        <div className="flex flex-col gap-2 text-xs">
-
-                            <span className="flex items-center gap-2">
-                                <CiLocationOn
-                                    size={17}
-                                    className="text-red-500"
-                                />
-                                Toliara, Madagascar
-                            </span>
-
-                            <a
-                                href="mailto:ranaivomananafrancky@gmail.com"
-                                className="flex items-center gap-2 hover:text-red-500 transition-colors duration-300"
-                            >
-                                <MdEmail
-                                    size={17}
-                                    className="text-red-500"
-                                />
-                                ranaivomananafrancky@gmail.com
-                            </a>
-
-                            <a
-                                href="tel:+261385382860"
-                                className="flex items-center gap-2 hover:text-red-500 transition-colors duration-300"
-                            >
-                                <BiPhone
-                                    size={17}
-                                    className="text-red-500"
-                                />
-                                +261 38 538 2860
-                            </a>
-
-                        </div>
+                        <p className="text-xs text-slate-500">
+                            Toliara, Madagascar
+                        </p>
 
                     </div>
 
                 </div>
 
+                {/* COPYRIGHT */}
+                <div className="mt-9 flex flex-col items-center justify-between gap-3 border-t border-white/[0.06] pt-6 text-center text-[11px] sm:flex-row">
 
-                {/* ================= SÉPARATION ================= */}
-                <div className="border-t border-slate-800 my-8"></div>
-
-
-                {/* ================= BAS DU FOOTER ================= */}
-                <div className="flex flex-col md:flex-row justify-center items-center md:gap-10 gap-5 text-[10px]">
-
-                    <p>
-                        © 2025–2026 <span className="text-white">RANAIVOMANANA FILIZENE Francky Michel</span>.
+                    <p className="text-slate-500">
+                        © 2026 <span className="font-medium text-slate-300">Francky RM</span>.
                         Tous droits réservés.
                     </p>
 
                     <p className="text-slate-600">
-                        Designed & Developed by
-                        <span className="text-slate-200 ml-1">
-                           <a href="https://www.facebook.com/FranckyFilizene" className="hover:text-red-500 transition-colors duration-300">
-                                Francky RM
-                           </a>
+                        Designed & Developed by{' '}
+                        <span className="font-medium text-red-500">
+                            Francky
                         </span>
                     </p>
 
@@ -173,8 +134,7 @@ const Footer = () => {
             </div>
 
         </footer>
+    );
+};
 
-    )
-}
-
-export default Footer
+export default Footer;
